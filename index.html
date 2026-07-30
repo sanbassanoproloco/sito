@@ -66,10 +66,26 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ===== Badge/Sigillo "50° Anniversario" ===== */
+    /* ===== Badge/Sigillo "50°Anniversario" ===== */
     .anniversary-seal, .anniversary-badge {
       position: relative;
       overflow: hidden;
+    }
+    .anniversary-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      flex-shrink: 0;
+      max-width: 100%;
+      white-space: nowrap;
+      line-height: 1;
+      overflow: hidden;
+    }
+    .anniversary-badge > span {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .anniversary-seal::after, .anniversary-badge::after {
       content: '';
@@ -616,9 +632,9 @@
           <button onclick="navigateTo('serestate')" data-nav="serestate" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-amber-300">SeRestate 2026</button>
 
           <!-- Badge celebrativo 50° Anniversario -->
-          <div class="anniversary-badge hidden lg:flex items-center gap-1.5 ml-2 mr-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/15 to-amber-400/15 border border-amber-400/50 text-amber-300">
-            <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
-            <span class="text-xs font-bold tracking-wide uppercase whitespace-nowrap">50° Anniversario</span>
+          <div class="anniversary-badge hidden lg:inline-flex items-center justify-center gap-1.5 ml-2 mr-1 px-2.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/15 to-amber-400/15 border border-amber-400/50 text-amber-300">
+            <i class="fa-solid fa-star text-amber-400 text-[10px] sm:text-[11px]"></i>
+            <span class="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase leading-none">50°Anniversario</span>
           </div>
           
           <!-- Special CTA for 5x1000 -->
@@ -640,9 +656,9 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden md:hidden bg-brand-900 border-t border-brand-800 px-4 pt-3 pb-6 space-y-2">
       <!-- Badge celebrativo 50° Anniversario (mobile) -->
-      <div class="anniversary-badge flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500/15 to-amber-400/15 border border-amber-400/50 text-amber-300 mb-1">
-        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
-        <span class="text-xs font-bold tracking-wide uppercase">50° Anniversario</span>
+      <div class="anniversary-badge inline-flex items-center justify-center gap-2 px-3 py-2 rounded-full bg-gradient-to-r from-amber-500/15 to-amber-400/15 border border-amber-400/50 text-amber-300 mb-1">
+        <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
+        <span class="text-[10px] font-bold tracking-[0.2em] uppercase leading-none">50°Anniversario</span>
       </div>
       <button onclick="navigateTo('home')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-white hover:bg-brand-800">Home page</button>
       <button onclick="navigateTo('attivita')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Le attività</button>
