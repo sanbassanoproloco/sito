@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Loco San Bassano APS - Sito Ufficiale</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+              950: '#0a2e1a', // Deep Forest Green inspired by original header
+            },
+            accent: {
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom subtle animations and utilities */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+    }
+    .hero-pattern {
+      background-color: #0a2e1a;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
+
+  <!-- ================= HEADER & NAVIGATION ================= -->
+  <header class="sticky top-0 z-50 bg-brand-950 text-white shadow-lg border-b border-brand-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        
+        <!-- Logo & Title -->
+        <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+          <!-- Stylized Pro Loco Symbol -->
+          <div class="flex items-center gap-1 bg-white/10 p-2 rounded-lg border border-white/15 group-hover:bg-white/20 transition">
+            <div class="w-3 h-7 bg-red-600 rounded-sm"></div>
+            <div class="w-3 h-7 bg-emerald-600 rounded-sm"></div>
+            <div class="w-3 h-7 bg-blue-600 rounded-sm"></div>
+            <div class="w-3 h-7 bg-amber-500 rounded-sm"></div>
+          </div>
+          <div>
+            <span class="font-heading font-extrabold text-xl sm:text-2xl tracking-tight block text-white leading-none">
+              Pro Loco <span class="text-amber-400">San Bassano</span>
+            </span>
+            <span class="text-xs text-emerald-300 font-medium tracking-widest uppercase mt-1 block">Associazione Promozione Sociale</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <button onclick="navigateTo('home')" data-nav="home" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-white active">Home page</button>
+          <button onclick="navigateTo('attivita')" data-nav="attivita" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Le attività</button>
+          <button onclick="navigateTo('comunicazioni')" data-nav="comunicazioni" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Comunicazioni</button>
+          <button onclick="navigateTo('direttivo')" data-nav="direttivo" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Il Direttivo</button>
+          <button onclick="navigateTo('contattaci')" data-nav="contattaci" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Contattaci</button>
+          
+          <!-- Special CTA for 5x1000 -->
+          <button onclick="navigateTo('5x1000')" data-nav="5x1000" class="nav-btn ml-2 px-4 py-2 rounded-lg text-sm font-bold bg-amber-500 hover:bg-amber-400 text-brand-950 shadow-sm transition transform hover:-translate-y-0.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-heart text-red-700"></i>
+            5X1000
+          </button>
+        </nav>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-emerald-200 hover:text-white hover:bg-white/10 focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-900 border-t border-brand-800 px-4 pt-3 pb-6 space-y-2">
+      <button onclick="navigateTo('home')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-white hover:bg-brand-800">Home page</button>
+      <button onclick="navigateTo('attivita')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Le attività</button>
+      <button onclick="navigateTo('comunicazioni')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Comunicazioni</button>
+      <button onclick="navigateTo('direttivo')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Il Direttivo</button>
+      <button onclick="navigateTo('contattaci')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Contattaci</button>
+      <button onclick="navigateTo('5x1000')" class="w-full text-center mt-2 px-4 py-3 rounded-md font-bold bg-amber-500 text-brand-950 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-heart text-red-700"></i> Sostienici con il 5X1000
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="flex-grow">
+
+    <!-- ---------------- PAGE 1: HOME PAGE ---------------- -->
+    <section id="page-home" class="page-section active">
+      
+      <!-- Hero Banner -->
+      <div class="hero-pattern relative text-white py-16 lg:py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand-950/50 to-brand-950 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center max-w-4xl mx-auto">
+            
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-800/80 text-emerald-200 border border-emerald-700/50 mb-6">
+              <i class="fa-solid fa-location-dot text-amber-400"></i> San Bassano (Cremona)
+            </span>
+
+            <!-- Hero Main Badge / Box -->
+            <div class="p-8 sm:p-12 rounded-3xl border-2 border-white/20 bg-white/5 backdrop-blur-md shadow-2xl mb-8">
+              <h1 class="font-heading text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-2">
+                Proloco San Bassano <span class="text-amber-400 font-normal text-3xl sm:text-5xl">APS</span>
+              </h1>
+              <p class="text-emerald-100 text-lg sm:text-xl font-light mt-4 max-w-2xl mx-auto">
+                Promoviamo il territorio, valorizziamo la cultura e uniamo la nostra comunità con passione ed entusiasmo.
+              </p>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-4">
+              <button onclick="navigateTo('attivita')" class="px-6 py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-brand-950 shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                <i class="fa-solid fa-calendar-days"></i> Scopri le Attività
+              </button>
+              <button onclick="navigateTo('comunicazioni')" class="px-6 py-3.5 rounded-xl font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition flex items-center gap-2">
+                <i class="fa-solid fa-bullhorn"></i> Ultimi Avvisi
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Welcome Section (Recreating Original Structure) -->
+      <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Column: Logo Showcase -->
+            <div class="lg:col-span-5 flex justify-center">
+              <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm text-center max-w-sm w-full">
+                <!-- Restyled Logo Graphic -->
+                <div class="flex justify-center items-center gap-2 mb-6">
+                  <div class="w-10 h-20 bg-red-600 rounded-md shadow flex items-end justify-center pb-2 text-white"><i class="fa-solid fa-church text-xs"></i></div>
+                  <div class="w-10 h-20 bg-emerald-600 rounded-md shadow flex items-end justify-center pb-2 text-white"><i class="fa-solid fa-wheat-awn text-xs"></i></div>
+                  <div class="w-10 h-20 bg-blue-600 rounded-md shadow flex items-end justify-center pb-2 text-white"><i class="fa-solid fa-water text-xs"></i></div>
+                  <div class="w-10 h-20 bg-amber-500 rounded-md shadow flex items-end justify-center pb-2 text-white"><i class="fa-solid fa-beer-mug-empty text-xs"></i></div>
+                </div>
+                <h3 class="font-heading text-2xl font-extrabold text-brand-950">Pro Loco</h3>
+                <p class="text-xl font-bold text-amber-600 tracking-wider">San Bassano <span class="text-xs text-slate-500 font-normal">APS</span></p>
+                <div class="mt-4 pt-4 border-t border-slate-200 text-xs text-slate-500">
+                  Associazione di Promozione Sociale ISCRITTA AL RUNTS
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Welcome Text -->
+            <div class="lg:col-span-7 space-y-6">
+              <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Chi Siamo</span>
+              <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                Al servizio del nostro borgo e delle sue tradizioni
+              </h2>
+              
+              <div class="space-y-4 text-slate-600 text-lg leading-relaxed">
+                <p>
+                  La <strong class="text-slate-900">Proloco di San Bassano APS</strong> è un'associazione senza scopo di lucro, il cui scopo sociale è quello di promuovere e valorizzare l'ambiente, la cultura e le tradizioni del territorio sanbassanese.
+                </p>
+                <p>
+                  Il suo obiettivo principale è organizzare eventi, feste, sagre e iniziative culturali per far conoscere le tradizioni, il patrimonio artistico e le attrazioni turistiche locali.
+                </p>
+              </div>
+
+              <!-- Original Tagline Restyled -->
+              <div class="p-6 rounded-2xl bg-gradient-to-r from-emerald-50 to-amber-50 border-l-4 border-amber-500 shadow-sm mt-6">
+                <p class="text-xl sm:text-2xl font-bold italic text-brand-950 font-heading">
+                  "Siamo il tuo punto di riferimento alla scoperta del nostro territorio!"
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Pillars Cards -->
+      <div class="py-16 bg-slate-100 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12">
+            <h2 class="font-heading text-3xl font-bold text-slate-900">Cosa Facciamo</h2>
+            <p class="text-slate-600 mt-2">I nostri impegni quotidiani per rendere vivo San Bassano</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+              <div class="w-14 h-14 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center text-2xl mb-6">
+                <i class="fa-solid fa-[#166534] fa-utensils"></i>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Eventi & Sagre</h3>
+              <p class="text-slate-600 leading-relaxed">Organizziamo momenti di festa e convivium, valorizzando i prodotti tipici della tradizione enogastronomica locale.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+              <div class="w-14 h-14 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center text-2xl mb-6">
+                <i class="fa-solid fa-masks-theater"></i>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Cultura e Storia</h3>
+              <p class="text-slate-600 leading-relaxed">Promuoviamo visite guidate, mostre e spettacoli per riscoprire la ricca storia del nostro borgo storico.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+              <div class="w-14 h-14 bg-blue-100 text-blue-800 rounded-xl flex items-center justify-center text-2xl mb-6">
+                <i class="fa-solid fa-people-group"></i>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Comunità e Volontariato</h3>
+              <p class="text-slate-600 leading-relaxed">Punto di incontro per cittadini di ogni età, favorendo l'aggregazione, l'inclusione e lo spirito di collaborazione.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ---------------- PAGE 2: LE ATTIVITÀ ---------------- -->
+    <section id="page-attivita" class="page-section">
+      <div class="bg-brand-950 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="font-heading text-4xl font-extrabold text-white">Le Attività</h1>
+          <p class="text-emerald-200 mt-2">Scopri gli eventi, le manifestazioni e i progetti promossi dalla nostra associazione.</p>
+        </div>
+      </div>
+
+      <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mb-10 pb-4 border-b border-slate-200">
+          <button class="px-4 py-2 rounded-lg text-sm font-semibold bg-brand-900 text-white shadow-sm">Tutte le Attività</button>
+          <button class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">Sagre & Gastronomia</button>
+          <button class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">Cultura e Mostre</button>
+          <button class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">Bambini e Famiglie</button>
+        </div>
+
+        <!-- Activities Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Activity 1 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
+            <div class="h-48 bg-gradient-to-r from-amber-500 to-amber-600 p-6 text-white flex flex-col justify-between relative">
+              <span class="self-start px-3 py-1 rounded-full text-xs font-bold bg-black/20 backdrop-blur">Sagra Annuale</span>
+              <div>
+                <span class="text-xs text-amber-100 font-medium uppercase tracking-wider block">Evento Principale</span>
+                <h3 class="font-heading text-2xl font-extrabold text-white">Festa del Paese</h3>
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <div class="flex items-center gap-2 text-sm text-slate-500">
+                <i class="fa-regular fa-calendar text-brand-700"></i> Settembre (Tutti gli anni)
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                L'appuntamento più atteso dell'anno con stand gastronomici, musica dal vivo, bancarelle dell'artigianato e intrattenimento per grandi e piccini.
+              </p>
+              <button onclick="openModal('Festa del Paese', 'L’evento clou della Pro Loco San Bassano. Tre giornate ricche di sapori tradizionali, spettacoli e convivialità nel cuore del borgo. Maggiori informazioni e programma dettagliato verranno pubblicati prima dell’evento.')" class="text-brand-800 font-bold text-sm hover:underline flex items-center gap-1">
+                Scopri di più <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Activity 2 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
+            <div class="h-48 bg-gradient-to-r from-emerald-700 to-brand-900 p-6 text-white flex flex-col justify-between relative">
+              <span class="self-start px-3 py-1 rounded-full text-xs font-bold bg-black/20 backdrop-blur">Cultura & Storia</span>
+              <div>
+                <span class="text-xs text-emerald-200 font-medium uppercase tracking-wider block">Patrimonio Locale</span>
+                <h3 class="font-heading text-2xl font-extrabold text-white">Visite Guidate del Borgo</h3>
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <div class="flex items-center gap-2 text-sm text-slate-500">
+                <i class="fa-regular fa-calendar text-brand-700"></i> Primavera / Autunno
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Passeggiate culturali alla scoperta degli angoli storici di San Bassano, monumenti, chiesette e racconti delle antiche famiglie locali.
+              </p>
+              <button onclick="openModal('Visite Guidate del Borgo', 'Un viaggio nel tempo guidato da esperti di storia locale. Percorsi accessibili a tutti per riscoprire le radici del nostro territorio.')" class="text-brand-800 font-bold text-sm hover:underline flex items-center gap-1">
+                Scopri di più <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Activity 3 -->
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
+            <div class="h-48 bg-gradient-to-r from-blue-600 to-indigo-800 p-6 text-white flex flex-col justify-between relative">
+              <span class="self-start px-3 py-1 rounded-full text-xs font-bold bg-black/20 backdrop-blur">Sociale & Famiglie</span>
+              <div>
+                <span class="text-xs text-blue-200 font-medium uppercase tracking-wider block">Ricorrenza</span>
+                <h3 class="font-heading text-2xl font-extrabold text-white">Mercatini & Feste di Via</h3>
+              </div>
+            </div>
+            <div class="p-6 space-y-4">
+              <div class="flex items-center gap-2 text-sm text-slate-500">
+                <i class="fa-regular fa-calendar text-brand-700"></i> Periodi Festivi (Natale/Pasqua)
+              </div>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Mercatini di Natale, feste di carnevale per i bambini e giornate dedicate allo scambio, al riuso e all'artigianato locale.
+              </p>
+              <button onclick="openModal('Mercatini & Feste di Via', 'Mercatini a tema, laboratori creativi per ragazzi e stand per le associazioni del territorio.')" class="text-brand-800 font-bold text-sm hover:underline flex items-center gap-1">
+                Scopri di più <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- PAGE 3: COMUNICAZIONI ---------------- -->
+    <section id="page-comunicazioni" class="page-section">
+      <div class="bg-brand-950 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="font-heading text-4xl font-extrabold text-white">Comunicazioni</h1>
+          <p class="text-emerald-200 mt-2">Avvisi ufficiali, verbali e novità dalla Pro Loco San Bassano APS.</p>
+        </div>
+      </div>
+
+      <div class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="space-y-6">
+          
+          <!-- Announcement Item 1 -->
+          <article class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-500 transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Avviso Ufficiale</span>
+              <span class="text-xs text-slate-400"><i class="fa-regular fa-clock"></i> Pubblicato di recente</span>
+            </div>
+            <h2 class="font-heading text-2xl font-bold text-slate-900 mb-3">Campagna Tesseramento Pro Loco 2026</h2>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              È ufficialmente aperta la campagna tesseramento per l'anno in corso! Diventare socio della Pro Loco significa sostenere attivamente le iniziative del paese ed essere parte integrante della comunità.
+            </p>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500">Quota sociale annuale: € 10,00</span>
+              <button onclick="navigateTo('contattaci')" class="px-4 py-2 bg-brand-900 text-white rounded-lg text-sm font-semibold hover:bg-brand-800 transition">
+                Richiedi la tessera
+              </button>
+            </div>
+          </article>
+
+          <!-- Announcement Item 2 -->
+          <article class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-500 transition">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Trasparenza</span>
+              <span class="text-xs text-slate-400"><i class="fa-regular fa-clock"></i> Archivio Soci</span>
+            </div>
+            <h2 class="font-heading text-2xl font-bold text-slate-900 mb-3">Convocazione Assemblea Ordinaria dei Soci</h2>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              Si avvisano tutti i soci che è convocata l'Assemblea Ordinaria per l'approvazione del bilancio consuntivo e la presentazione del calendario manifestazioni.
+            </p>
+            <div class="pt-4 border-t border-slate-100">
+              <p class="text-xs text-slate-500"><i class="fa-solid fa-circle-info text-amber-500"></i> La partecipazione è aperta a tutti i tesserati in regola con la quota associativa.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- PAGE 4: IL DIRETTIVO ---------------- -->
+    <section id="page-direttivo" class="page-section">
+      <div class="bg-brand-950 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="font-heading text-4xl font-extrabold text-white">Il Direttivo</h1>
+          <p class="text-emerald-200 mt-2">I volti e le persone che guidano con passione la Pro Loco di San Bassano.</p>
+        </div>
+      </div>
+
+      <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Mission statement -->
+        <div class="bg-emerald-50 p-8 rounded-3xl border border-emerald-200 mb-12 text-center max-w-3xl mx-auto">
+          <h2 class="font-heading text-2xl font-bold text-brand-950 mb-2">Un team di volontari appassionati</h2>
+          <p class="text-slate-700">
+            Il Consiglio Direttivo viene eletto dai soci e lavora a titolo completamente gratuito per la pianificazione, la gestione e la realizzazione di tutti i progetti associativi.
+          </p>
+        </div>
+
+        <!-- Board Members Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Role 1 -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <div class="w-20 h-20 bg-brand-900 text-amber-400 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow">
+              <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-slate-900">Presidente</h3>
+            <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider mt-1">Rappresentante Legale</p>
+            <p class="text-slate-500 text-sm mt-3">Coordinamento generale delle attività e rapporti istituzionali con l'Amministrazione Comunale.</p>
+          </div>
+
+          <!-- Role 2 -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <div class="w-20 h-20 bg-brand-800 text-emerald-200 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-slate-900">Vice Presidente</h3>
+            <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider mt-1">Supporto alla Presidenza</p>
+            <p class="text-slate-500 text-sm mt-3">Gestione operativa e supporto al coordinamento dei volontari durante gli eventi.</p>
+          </div>
+
+          <!-- Role 3 -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <div class="w-20 h-20 bg-brand-800 text-emerald-200 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow">
+              <i class="fa-solid fa-file-pen"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-slate-900">Segretario e Tesoriere</h3>
+            <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider mt-1">Amministrazione</p>
+            <p class="text-slate-500 text-sm mt-3">Redazione verbali, tenuta dei registri contabili e trasparenza finanziaria dell'ente.</p>
+          </div>
+
+          <!-- Role 4 -->
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <div class="w-20 h-20 bg-brand-800 text-emerald-200 rounded-full flex items-center justify-center text-3xl mx-auto mb-4 shadow">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <h3 class="font-heading text-lg font-bold text-slate-900">Consiglieri</h3>
+            <p class="text-xs font-semibold text-emerald-700 uppercase tracking-wider mt-1">Membri del Consiglio</p>
+            <p class="text-slate-500 text-sm mt-3">Pianificazione e supporto alla realizzazione pratica delle singole iniziative.</p>
+          </div>
+
+        </div>
+
+        <!-- Join Us CTA -->
+        <div class="mt-12 bg-gradient-to-r from-brand-950 to-brand-900 text-white rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div>
+            <h3 class="font-heading text-2xl font-bold mb-2">Vuoi dare una mano anche tu?</h3>
+            <p class="text-emerald-100 max-w-xl">
+              La Pro Loco è aperta al contributo di tutti i cittadini! Se hai idee, tempo libero o semplicemente voglia di metterti in gioco per San Bassano, unisciti a noi!
+            </p>
+          </div>
+          <button onclick="navigateTo('contattaci')" class="px-6 py-3.5 bg-amber-500 text-brand-950 font-bold rounded-xl hover:bg-amber-400 transition whitespace-nowrap shadow-md">
+            Diventa Volontario
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------------- PAGE 5: CONTATTACI ---------------- -->
+    <section id="page-contattaci" class="page-section">
+      <div class="bg-brand-950 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="font-heading text-4xl font-extrabold text-white">Contattaci</h1>
+          <p class="text-emerald-200 mt-2">Siamo a tua disposizione per informazioni, proposte e collaborazioni.</p>
+        </div>
+      </div>
+
+      <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <!-- Contact Info Cards -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-xl flex items-center justify-center text-xl shrink-0">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 font-heading">Sede Operativa</h4>
+                  <p class="text-slate-600 text-sm mt-1">
+                    San Bassano (CR) - 26029<br>
+                    Lombardia, Italia
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-amber-100 text-amber-800 rounded-xl flex items-center justify-center text-xl shrink-0">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 font-heading">Email & PEC</h4>
+                  <p class="text-slate-600 text-sm mt-1">
+                    info@prolocosanbassano.it
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-blue-100 text-blue-800 rounded-xl flex items-center justify-center text-xl shrink-0">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 font-heading">Orari di Contatto</h4>
+                  <p class="text-slate-600 text-sm mt-1">
+                    Rispondiamo a messaggi e comunicazioni nei giorni feriali.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Social Links Banner -->
+            <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-sm text-center">
+              <h4 class="font-heading font-bold mb-3">Seguici sui Social Network</h4>
+              <div class="flex justify-center gap-4 text-2xl">
+                <a href="#" class="w-10 h-10 bg-white/10 hover:bg-emerald-600 rounded-full flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 bg-white/10 hover:bg-emerald-600 rounded-full flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 bg-white/10 hover:bg-emerald-600 rounded-full flex items-center justify-center transition"><i class="fa-brands fa-whatsapp"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="lg:col-span-7 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h3 class="font-heading text-2xl font-bold text-slate-900 mb-6">Inviaci un messaggio</h3>
+            
+            <form onsubmit="handleFormSubmit(event)" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nome e Cognome *</label>
+                  <input type="text" required placeholder="Mario Rossi" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-900 focus:border-transparent outline-none transition">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Indirizzo Email *</label>
+                  <input type="email" required placeholder="mario.rossi@email.it" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-900 focus:border-transparent outline-none transition">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Oggetto</label>
+                <input type="text" placeholder="Informazioni evento / Tesseramento" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-900 focus:border-transparent outline-none transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Messaggio *</label>
+                <textarea required rows="5" placeholder="Scrivi qui il tuo messaggio..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-900 focus:border-transparent outline-none transition"></textarea>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <input type="checkbox" required id="privacy" class="rounded text-brand-900 focus:ring-brand-900">
+                <label for="privacy" class="text-xs text-slate-500">Acconsento al trattamento dei dati personali secondo la normativa Privacy (GDPR).</label>
+              </div>
+
+              <button type="submit" class="w-full py-4 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-xl shadow-md transition">
+                Invia Messaggio <i class="fa-solid fa-paper-plane ml-2"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- PAGE 6: 5X1000 ---------------- -->
+    <section id="page-5x1000" class="page-section">
+      <div class="bg-gradient-to-r from-amber-600 to-amber-700 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-bold uppercase tracking-wider">Sostieni il tuo territorio</span>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-white mt-3">Donaci il tuo 5X1000</h1>
+          <p class="text-amber-100 text-lg mt-2 max-w-2xl mx-auto">Un gesto semplice che a te non costa nulla, ma che per la nostra comunità vale tantissimo.</p>
+        </div>
+      </div>
+
+      <div class="py-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Code Display Card -->
+        <div class="bg-white p-8 sm:p-12 rounded-3xl border-2 border-amber-400 shadow-xl text-center space-y-6">
+          <h2 class="font-heading text-2xl font-bold text-slate-900">Codice Fiscale della Pro Loco San Bassano APS</h2>
+          
+          <!-- CF Box -->
+          <div class="bg-slate-100 p-6 rounded-2xl border border-slate-300 inline-flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md w-full mx-auto">
+            <span id="codice-fiscale" class="font-mono text-2xl sm:text-3xl font-extrabold text-brand-950 tracking-wider">90001230198</span>
+            <button onclick="copyCF()" class="px-4 py-2 bg-brand-900 hover:bg-brand-800 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shrink-0">
+              <i class="fa-regular fa-copy"></i> Copia Codice
+            </button>
+          </div>
+          <p id="copy-feedback" class="text-xs text-emerald-600 font-bold hidden"><i class="fa-solid fa-check"></i> Codice Fiscale copiato negli appunti!</p>
+
+          <p class="text-slate-600 text-sm max-w-xl mx-auto">
+            Inserisci questo codice fiscale nel riquadro destinato al <strong>Sostegno degli Enti del Terzo Settore (ETS)</strong> della tua dichiarazione dei redditi (730, Modello Redditi o Scheda CU).
+          </p>
+        </div>
+
+        <!-- How to donate steps -->
+        <div class="mt-12 space-y-6">
+          <h3 class="font-heading text-2xl font-bold text-slate-900 text-center">Come fare per donare?</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center">
+              <div class="w-10 h-10 bg-amber-500 text-brand-950 font-bold rounded-full flex items-center justify-center mx-auto mb-4">1</div>
+              <h4 class="font-bold text-slate-900 mb-2">Compila la Dichiarazione</h4>
+              <p class="text-xs text-slate-600">Prendi il tuo modello 730, CU o Redditi delle Persone Fisiche.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center">
+              <div class="w-10 h-10 bg-amber-500 text-brand-950 font-bold rounded-full flex items-center justify-center mx-auto mb-4">2</div>
+              <h4 class="font-bold text-slate-900 mb-2">Metti la tua Firma</h4>
+              <p class="text-xs text-slate-600">Firma nella casella dedicata agli Enti del Terzo Settore e Promozione Sociale.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 text-center">
+              <div class="w-10 h-10 bg-amber-500 text-brand-950 font-bold rounded-full flex items-center justify-center mx-auto mb-4">3</div>
+              <h4 class="font-bold text-slate-900 mb-2">Inserisci il Codice</h4>
+              <p class="text-xs text-slate-600">Scrivi il Codice Fiscale della Pro Loco nell'apposito spazio.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Modal for Activity Details -->
+  <div id="info-modal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-4 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-600">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3 id="modal-title" class="font-heading text-2xl font-bold text-slate-900"></h3>
+      <p id="modal-body" class="text-slate-600 text-sm leading-relaxed"></p>
+      <div class="pt-4 flex justify-end">
+        <button onclick="closeModal()" class="px-5 py-2.5 bg-brand-900 text-white font-bold rounded-xl text-sm">Chiudi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl z-50 hidden items-center gap-3">
+    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-text" class="text-sm font-medium">Messaggio inviato con successo!</span>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-brand-950 text-white border-t border-brand-900 pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-white/10">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center gap-2">
+            <span class="font-heading font-extrabold text-xl text-white">Pro Loco <span class="text-amber-400">San Bassano</span></span>
+            <span class="text-xs bg-white/10 text-emerald-300 px-2 py-0.5 rounded font-mono">APS</span>
+          </div>
+          <p class="text-slate-300 text-sm max-w-md leading-relaxed">
+            Associazione di Promozione Sociale dedicata alla tutela delle tradizioni, promozione turistica e crescita culturale del territorio di San Bassano (CR).
+          </p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="font-heading font-bold text-amber-400 mb-4 text-sm uppercase tracking-wider">Link Rapidi</h4>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li><a href="#home" onclick="navigateTo('home')" class="hover:text-white transition">Home page</a></li>
+            <li><a href="#attivita" onclick="navigateTo('attivita')" class="hover:text-white transition">Le attività</a></li>
+            <li><a href="#comunicazioni" onclick="navigateTo('comunicazioni')" class="hover:text-white transition">Comunicazioni</a></li>
+            <li><a href="#direttivo" onclick="navigateTo('direttivo')" class="hover:text-white transition">Il Direttivo</a></li>
+            <li><a href="#5x1000" onclick="navigateTo('5x1000')" class="hover:text-white transition">Sostienici 5X1000</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Contacts -->
+        <div>
+          <h4 class="font-heading font-bold text-amber-400 mb-4 text-sm uppercase tracking-wider">Contatti</h4>
+          <p class="text-sm text-slate-300 mb-2"><i class="fa-solid fa-location-dot text-amber-400 mr-2"></i> San Bassano (CR)</p>
+          <p class="text-sm text-slate-300"><i class="fa-solid fa-envelope text-amber-400 mr-2"></i> info@prolocosanbassano.it</p>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+        <p>© 2026 Pro Loco San Bassano APS - Tutti i diritti riservati.</p>
+        <p class="text-slate-500">Sito ottimizzato per la pubblicazione via GitHub Pages</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    // Tab Navigation Logic
+    function navigateTo(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      // Show selected page
+      const targetPage = document.getElementById('page-' + pageId);
+      if (targetPage) {
+        targetPage.classList.add('active');
+      }
+
+      // Update Active state on Navbar Buttons
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        if (btn.getAttribute('data-nav') === pageId) {
+          btn.classList.add('bg-white/10', 'text-white');
+          btn.classList.remove('text-emerald-100');
+        } else if (btn.getAttribute('data-nav') !== '5x1000') {
+          btn.classList.remove('bg-white/10', 'text-white');
+          btn.classList.add('text-emerald-100');
+        }
+      });
+
+      // Close mobile menu if open
+      document.getElementById('mobile-menu').classList.add('hidden');
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Toggle Mobile Drawer
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Modal Control
+    function openModal(title, text) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-body').innerText = text;
+      const modal = document.getElementById('info-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('info-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Copy 5x1000 Tax Code
+    function copyCF() {
+      const cfText = document.getElementById('codice-fiscale').innerText;
+      navigator.clipboard.writeText(cfText).then(() => {
+        const feedback = document.getElementById('copy-feedback');
+        feedback.classList.remove('hidden');
+        setTimeout(() => feedback.classList.add('hidden'), 3000);
+      });
+    }
+
+    // Handle Form Submit
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      event.target.reset();
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 4000);
+    }
+  </script>
+
+</body>
+</html>
+```eof
