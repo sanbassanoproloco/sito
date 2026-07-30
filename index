@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Loco San Bassano APS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home page</a></li>
+            <li><a href="attivita.html">Le attività</a></li>
+            <li><a href="comunicazioni.html">Comunicazioni</a></li>
+            <li><a href="direttivo.html">Il Direttivo</a></li>
+            <li><a href="contatti.html">Contattaci</a></li>
+            <li><a href="5x1000.html">5x1000</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Pro Loco San Bassano APS</h1>
+    <p>Promuoviamo l’ambiente, la cultura e le tradizioni del territorio sanbassanese.</p>
+</section>
+
+<section class="intro">
+    <p>
+        La Pro Loco di San Bassano APS è un'associazione senza scopo di lucro, 
+        il cui scopo sociale è quello di promuovere e valorizzare l'ambiente, 
+        la cultura e le tradizioni del territorio sanbassanese.
+    </p>
+    <p>
+        Organizziamo eventi, feste, sagre e iniziative culturali per far conoscere 
+        le tradizioni, il patrimonio artistico e le attrazioni turistiche locali.
+    </p>
+    <p><strong>Siamo il tuo punto di riferimento alla scoperta del nostro territorio!</strong></p>
+</section>
+
+<section class="logo">
+    <img src="logo.png" alt="Logo Pro Loco San Bassano APS">
+</section>
+
+<footer>
+    <p>© 2026 Pro Loco San Bassano APS</p>
+</footer>
+
+</body>
+</html>
