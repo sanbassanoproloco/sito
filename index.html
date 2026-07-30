@@ -671,7 +671,34 @@
       </button>
     </div>
   </header>
+<!-- ===== Banner "Sito Rinnovato" ===== -->
+<div id="renewal-banner" class="bg-amber-400 text-brand-950 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-center gap-3 text-center">
+    <i class="fa-solid fa-sparkles text-brand-950 shrink-0"></i>
+    <p class="text-sm font-semibold">
+      Il nostro sito si rinnova! Scopri la nuova grafica e le nuove funzionalità.
+    </p>
+    <button onclick="closeRenewalBanner()" aria-label="Chiudi avviso" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full hover:bg-black/10 flex items-center justify-center transition shrink-0">
+      <i class="fa-solid fa-xmark text-sm"></i>
+    </button>
+  </div>
+</div>
 
+<script>
+  function closeRenewalBanner() {
+    const banner = document.getElementById('renewal-banner');
+    if (banner) {
+      banner.style.display = 'none';
+      sessionStorage.setItem('renewalBannerClosed', 'true');
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (sessionStorage.getItem('renewalBannerClosed') === 'true') {
+      const banner = document.getElementById('renewal-banner');
+      if (banner) banner.style.display = 'none';
+    }
+  });
+</script>
   <!-- ================= MAIN CONTENT AREA ================= -->
   <main class="flex-grow">
 
