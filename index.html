@@ -64,6 +64,30 @@
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* ===== Badge/Sigillo "50° Anniversario" ===== */
+    .anniversary-seal, .anniversary-badge {
+      position: relative;
+      overflow: hidden;
+    }
+    .anniversary-seal::after, .anniversary-badge::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -160%;
+      width: 55%;
+      height: 100%;
+      background: linear-gradient(115deg, transparent, rgba(255,255,255,0.65), transparent);
+      animation: seal-shine 4s ease-in-out infinite;
+    }
+    @keyframes seal-shine {
+      0%   { left: -160%; }
+      45%  { left: 160%; }
+      100% { left: 160%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .anniversary-seal::after, .anniversary-badge::after { animation: none; }
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans flex flex-col min-h-screen">
@@ -75,7 +99,13 @@
         
         <!-- Logo & Title -->
         <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
-          <img src="logo.png" alt="Logo Pro Loco San Bassano" class="h-12 w-auto bg-white p-1 rounded-lg shadow-sm">
+          <div class="relative shrink-0">
+            <img src="logo.png" alt="Logo Pro Loco San Bassano" class="h-12 w-auto bg-white p-1 rounded-lg shadow-sm">
+            <!-- Sigillo 50° Anniversario -->
+            <div class="anniversary-seal absolute -top-2.5 -right-2.5 w-9 h-9 rounded-full bg-gradient-to-br from-amber-300 via-amber-500 to-amber-600 border-2 border-white shadow-md flex flex-col items-center justify-center leading-none" title="50° Anniversario Pro Loco San Bassano">
+              <span class="font-heading font-extrabold text-[11px] text-brand-950">50°</span>
+            </div>
+          </div>
           <div>
             <span class="font-heading font-extrabold text-xl sm:text-2xl tracking-tight block text-white leading-none">
               Pro Loco <span class="text-amber-400">San Bassano</span>
@@ -91,6 +121,12 @@
           <button onclick="navigateTo('comunicazioni')" data-nav="comunicazioni" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Comunicazioni</button>
           <button onclick="navigateTo('direttivo')" data-nav="direttivo" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Il Direttivo</button>
           <button onclick="navigateTo('contattaci')" data-nav="contattaci" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Contattaci</button>
+
+          <!-- Badge celebrativo 50° Anniversario -->
+          <div class="anniversary-badge hidden lg:flex items-center gap-1.5 ml-2 mr-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500/15 to-amber-400/15 border border-amber-400/50 text-amber-300">
+            <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
+            <span class="text-xs font-bold tracking-wide uppercase whitespace-nowrap">50° Anniversario</span>
+          </div>
           
           <!-- Special CTA for 5x1000 -->
           <button onclick="navigateTo('5x1000')" data-nav="5x1000" class="nav-btn ml-2 px-4 py-2 rounded-lg text-sm font-bold bg-amber-500 hover:bg-amber-400 text-brand-950 shadow-sm transition transform hover:-translate-y-0.5 flex items-center gap-1.5">
@@ -110,6 +146,11 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden md:hidden bg-brand-900 border-t border-brand-800 px-4 pt-3 pb-6 space-y-2">
+      <!-- Badge celebrativo 50° Anniversario (mobile) -->
+      <div class="anniversary-badge flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500/15 to-amber-400/15 border border-amber-400/50 text-amber-300 mb-1">
+        <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+        <span class="text-xs font-bold tracking-wide uppercase">50° Anniversario</span>
+      </div>
       <button onclick="navigateTo('home')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-white hover:bg-brand-800">Home page</button>
       <button onclick="navigateTo('attivita')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Le attività</button>
       <button onclick="navigateTo('comunicazioni')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Comunicazioni</button>
