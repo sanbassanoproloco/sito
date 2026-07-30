@@ -787,7 +787,87 @@
           </div>
         </div>
       </div>
+<!-- ===== Carosello Immagini Home ===== -->
+<div class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full">Galleria</span>
+      <h2 class="font-heading text-3xl font-bold text-slate-900 mt-3">Alcuni Momenti</h2>
+      <p class="text-slate-600 mt-2">Scorci delle nostre feste, sagre ed eventi</p>
+    </div>
 
+    <div class="relative rounded-3xl overflow-hidden shadow-lg border border-slate-200" id="carousel">
+      <!-- Track -->
+      <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+        <div class="min-w-full h-64 sm:h-96">
+          <img src="img/Immagine1.png" alt="Momento della festa 1" class="w-full h-full object-cover">
+        </div>
+        <div class="min-w-full h-64 sm:h-96">
+          <img src="img/Immagine2.png" alt="Momento della festa 2" class="w-full h-full object-cover">
+        </div>
+        <div class="min-w-full h-64 sm:h-96">
+          <img src="img/Immagine3.png" alt="Momento della festa 3" class="w-full h-full object-cover">
+        </div>
+        <div class="min-w-full h-64 sm:h-96">
+          <img src="img/Immagine4.png" alt="Momento della festa 4" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+      <!-- Frecce -->
+      <button onclick="carouselMove(-1)" aria-label="Immagine precedente" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-brand-950/70 hover:bg-brand-950 text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button onclick="carouselMove(1)" aria-label="Immagine successiva" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-brand-950/70 hover:bg-brand-950 text-white flex items-center justify-center transition">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Dots -->
+      <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const track = document.getElementById('carousel-track');
+    const dotsWrap = document.getElementById('carousel-dots');
+    const slides = track ? track.children.length : 0;
+    let current = 0;
+    let autoplayTimer = null;
+
+    function renderDots() {
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < slides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'w-2.5 h-2.5 rounded-full transition ' + (i === current ? 'bg-amber-400' : 'bg-white/60 hover:bg-white');
+        dot.setAttribute('aria-label', 'Vai alla slide ' + (i + 1));
+        dot.onclick = () => { current = i; update(); resetAutoplay(); };
+        dotsWrap.appendChild(dot);
+      }
+    }
+
+    function update() {
+      track.style.transform = `translateX(-${current * 100}%)`;
+      renderDots();
+    }
+
+    window.carouselMove = function(dir) {
+      current = (current + dir + slides) % slides;
+      update();
+      resetAutoplay();
+    };
+
+    function resetAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(() => { window.carouselMove(1); }, 5000);
+    }
+
+    if (track && slides > 0) {
+      update();
+      resetAutoplay();
+    }
+  })();
+</script>
     </section>
 
     <!-- ---------------- PAGE 2: LE ATTIVITÀ ---------------- -->
