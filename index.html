@@ -484,6 +484,32 @@
   #page-serestate .tag-tribute{ background:rgba(201,112,126,0.16); color:var(--rose); }
   #page-serestate .tag-festival{ background:rgba(232,182,74,0.16); color:var(--gold-soft); }
 
+  /* Galleria ricordi: invisibile finché vuota, appare da sola con le foto */
+  #page-serestate .event-gallery:empty{ display:none; }
+  #page-serestate .event-gallery:not(:empty){
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem;
+    margin-top:1rem;
+    padding-top:1rem;
+    border-top:1px solid var(--line);
+  }
+  #page-serestate .event-gallery:not(:empty)::before{
+    content:"Grazie per essere venuti! 📸";
+    width:100%;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--gold-soft);
+    margin-bottom:0.2rem;
+  }
+  #page-serestate .event-gallery img{
+    width:calc(33.333% - 0.4rem);
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:8px;
+    flex:0 0 auto;
+  }
+
   /* ---------- Menu section ---------- */
   #page-serestate .menu-section{
     max-width:var(--max-w);
@@ -1181,7 +1207,7 @@
 
 <section class="calendar" id="programma">
 
-  <article class="event" data-date="2026-08-02">
+     <article class="event" data-date="2026-08-02">
     <svg class="event-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l3.09 6.94L22 9l-5.5 5.36L17.8 22 12 18.27 6.2 22l1.3-7.64L2 9l6.91-1.06z"/></svg>
     <div class="event-card">
       <span class="event-status"></span>
@@ -1191,6 +1217,7 @@
       <h3 class="event-title">II° Festival Country</h3>
       <p class="event-artist">Ospite speciale: Johnny Rossato</p>
       <span class="event-tag tag-festival">Festival</span>
+      <div class="event-gallery"></div>
     </div>
   </article>
 
@@ -1204,6 +1231,7 @@
       <h3 class="event-title">Danilo Rancati Band</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
+      <div class="event-gallery"></div>
     </div>
   </article>
 
@@ -1217,6 +1245,7 @@
       <h3 class="event-title">Germano #ONE</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
+      <div class="event-gallery"></div>
     </div>
   </article>
 
@@ -1230,6 +1259,7 @@
       <h3 class="event-title">Laura Talenti Orchestra</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
+      <div class="event-gallery"></div>
     </div>
   </article>
 
@@ -1243,6 +1273,7 @@
       <h3 class="event-title">Effettoliga</h3>
       <p class="event-artist">Ligabue Tribute Band</p>
       <span class="event-tag tag-tribute">Tribute band</span>
+      <div class="event-gallery"></div>
     </div>
   </article>
 
@@ -1256,6 +1287,7 @@
       <h3 class="event-title">Gino e la Band</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
+      <div class="event-gallery"></div>
     </div>
   </article>
 
@@ -1269,6 +1301,7 @@
       <h3 class="event-title">Sensazione Modà</h3>
       <p class="event-artist">Modà Tribute Band</p>
       <span class="event-tag tag-tribute">Tribute band</span>
+      <div class="event-gallery"></div>
     </div>
   </article>
 
@@ -1299,7 +1332,6 @@
       <p>Menù valido per le serate del 21 e 28 agosto.</p>
       <a class="menu-download" href="menu/menu-tribute.pdf" target="_blank" rel="noopener">Scarica il PDF ↓</a>
     </div>
-
   </div>
 </section>
 
@@ -1740,6 +1772,31 @@
           const statusEl = nextEl.querySelector('.event-status');
           if(statusEl) statusEl.textContent = 'Prossima serata';
         }
+      })();
+
+      // Carica le foto ricordo da foto-eventi.json e popola le gallerie
+      (function(){
+        fetch('foto-eventi.json')
+          .then(res => res.ok ? res.json() : {})
+          .catch(() => ({}))
+          .then(data => {
+            document.querySelectorAll('#page-serestate .event[data-date]').forEach(el => {
+              const date = el.dataset.date;
+              const photos = data[date];
+              if(!photos || !photos.length) return;
+
+              const gallery = el.querySelector('.event-gallery');
+              if(!gallery) return;
+
+              photos.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Foto ricordo della serata del ' + date;
+                img.loading = 'lazy';
+                gallery.appendChild(img);
+              });
+            });
+          });
       })();
     }
 
