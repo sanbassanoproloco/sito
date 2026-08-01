@@ -1217,7 +1217,12 @@
       <h3 class="event-title">II° Festival Country</h3>
       <p class="event-artist">Ospite speciale: Johnny Rossato</p>
       <span class="event-tag tag-festival">Festival</span>
-      <div class="event-gallery"></div>
+      <div class="event-gallery">
+        <!-- Dopo la serata, incolla qui i tag <img>, es:
+        <img src="img/ricordi/2026-08-02-1.jpg" alt="Foto della Festa country">
+        <img src="img/ricordi/2026-08-02-2.jpg" alt="Foto della Festa country">
+        -->
+      </div>
     </div>
   </article>
 
@@ -1231,7 +1236,12 @@
       <h3 class="event-title">Danilo Rancati Band</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
-      <div class="event-gallery"></div>
+      <div class="event-gallery">
+        <!-- Dopo la serata, incolla qui i tag <img>, es:
+        <img src="img/ricordi/2026-08-06-1.jpg" alt="Foto della serata con Danilo Rancati Band">
+        <img src="img/ricordi/2026-08-06-2.jpg" alt="Foto della serata con Danilo Rancati Band">
+        -->
+      </div>
     </div>
   </article>
 
@@ -1245,7 +1255,12 @@
       <h3 class="event-title">Germano #ONE</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
-      <div class="event-gallery"></div>
+      <div class="event-gallery">
+        <!-- Dopo la serata, incolla qui i tag <img>, es:
+        <img src="img/ricordi/2026-08-13-1.jpg" alt="Foto della serata con Germano #ONE">
+        <img src="img/ricordi/2026-08-13-2.jpg" alt="Foto della serata con Germano #ONE">
+        -->
+      </div>
     </div>
   </article>
 
@@ -1259,7 +1274,12 @@
       <h3 class="event-title">Laura Talenti Orchestra</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
-      <div class="event-gallery"></div>
+      <div class="event-gallery">
+        <!-- Dopo la serata, incolla qui i tag <img>, es:
+        <img src="img/ricordi/2026-08-20-1.jpg" alt="Foto della serata con Laura Talenti Orchestra">
+        <img src="img/ricordi/2026-08-20-2.jpg" alt="Foto della serata con Laura Talenti Orchestra">
+        -->
+      </div>
     </div>
   </article>
 
@@ -1273,7 +1293,12 @@
       <h3 class="event-title">Effettoliga</h3>
       <p class="event-artist">Ligabue Tribute Band</p>
       <span class="event-tag tag-tribute">Tribute band</span>
-      <div class="event-gallery"></div>
+      <div class="event-gallery">
+        <!-- Dopo la serata, incolla qui i tag <img>, es:
+        <img src="img/ricordi/2026-08-21-1.jpg" alt="Foto della serata con Effettoliga">
+        <img src="img/ricordi/2026-08-21-2.jpg" alt="Foto della serata con Effettoliga">
+        -->
+      </div>
     </div>
   </article>
 
@@ -1287,7 +1312,12 @@
       <h3 class="event-title">Gino e la Band</h3>
       <p class="event-artist">Serata di ballo liscio</p>
       <span class="event-tag tag-ballo">Ballo liscio</span>
-      <div class="event-gallery"></div>
+      <div class="event-gallery">
+        <!-- Dopo la serata, incolla qui i tag <img>, es:
+        <img src="img/ricordi/2026-08-27-1.jpg" alt="Foto della serata con Gino e la Band">
+        <img src="img/ricordi/2026-08-27-2.jpg" alt="Foto della serata con Gino e la Band">
+        -->
+      </div>
     </div>
   </article>
 
@@ -1301,7 +1331,12 @@
       <h3 class="event-title">Sensazione Modà</h3>
       <p class="event-artist">Modà Tribute Band</p>
       <span class="event-tag tag-tribute">Tribute band</span>
-      <div class="event-gallery"></div>
+      <div class="event-gallery">
+        <!-- Dopo la serata, incolla qui i tag <img>, es:
+        <img src="img/ricordi/2026-08-28-1.jpg" alt="Foto della serata con Sensazione Modà">
+        <img src="img/ricordi/2026-08-28-2.jpg" alt="Foto della serata con Sensazione Modà">
+        -->
+      </div>
     </div>
   </article>
 
@@ -1772,31 +1807,6 @@
           const statusEl = nextEl.querySelector('.event-status');
           if(statusEl) statusEl.textContent = 'Prossima serata';
         }
-      })();
-
-      // Carica le foto ricordo da foto-eventi.json e popola le gallerie
-      (function(){
-        fetch('foto-eventi.json')
-          .then(res => res.ok ? res.json() : {})
-          .catch(() => ({}))
-          .then(data => {
-            document.querySelectorAll('#page-serestate .event[data-date]').forEach(el => {
-              const date = el.dataset.date;
-              const photos = data[date];
-              if(!photos || !photos.length) return;
-
-              const gallery = el.querySelector('.event-gallery');
-              if(!gallery) return;
-
-              photos.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = 'Foto ricordo della serata del ' + date;
-                img.loading = 'lazy';
-                gallery.appendChild(img);
-              });
-            });
-          });
       })();
     }
 
