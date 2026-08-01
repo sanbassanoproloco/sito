@@ -485,30 +485,35 @@
   #page-serestate .tag-festival{ background:rgba(232,182,74,0.16); color:var(--gold-soft); }
 
   /* Galleria ricordi: invisibile finché vuota, appare da sola con le foto */
-  #page-serestate .event-gallery:empty{ display:none; }
-  #page-serestate .event-gallery:not(:empty){
-    display:flex;
-    flex-wrap:wrap;
-    gap:0.5rem;
-    margin-top:1rem;
-    padding-top:1rem;
-    border-top:1px solid var(--line);
-  }
-  #page-serestate .event-gallery:not(:empty)::before{
-    content:"Grazie per essere venuti! 📸";
-    width:100%;
-    font-size:0.8rem;
-    font-weight:600;
-    color:var(--gold-soft);
-    margin-bottom:0.2rem;
-  }
-  #page-serestate .event-gallery img{
-    width:calc(33.333% - 0.4rem);
-    aspect-ratio:1/1;
-    object-fit:cover;
-    border-radius:8px;
-    flex:0 0 auto;
-  }
+  #page-serestate .event-gallery{
+  display:none;
+}
+
+#page-serestate .event-gallery:has(img){
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  margin-top:1rem;
+  padding-top:1rem;
+  border-top:1px solid var(--line);
+}
+
+#page-serestate .event-gallery:has(img)::before{
+  content:"Grazie per essere venuti! 📸";
+  width:100%;
+  font-size:0.8rem;
+  font-weight:600;
+  color:var(--gold-soft);
+  margin-bottom:0.2rem;
+}
+
+#page-serestate .event-gallery img{
+  width:calc(33.333% - 0.4rem);
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:8px;
+  flex:0 0 auto;
+}
 
   /* ---------- Menu section ---------- */
   #page-serestate .menu-section{
