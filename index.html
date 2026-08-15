@@ -832,34 +832,6 @@
       </button>
     </div>
   </header>
-<!-- ===== Banner "Sito Rinnovato" ===== -->
-<div id="renewal-banner" class="bg-amber-400 text-brand-950 relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-center gap-3 text-center">
-    <i class="fa-solid fa-sparkles text-brand-950 shrink-0"></i>
-    <p class="text-sm font-semibold">
-      Il nostro sito si rinnova! Scopri la nuova grafica e le nuove funzionalità.
-    </p>
-    <button onclick="closeRenewalBanner()" aria-label="Chiudi avviso" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full hover:bg-black/10 flex items-center justify-center transition shrink-0">
-      <i class="fa-solid fa-xmark text-sm"></i>
-    </button>
-  </div>
-</div>
-
-<script>
-  function closeRenewalBanner() {
-    const banner = document.getElementById('renewal-banner');
-    if (banner) {
-      banner.style.display = 'none';
-      sessionStorage.setItem('renewalBannerClosed', 'true');
-    }
-  }
-  document.addEventListener('DOMContentLoaded', () => {
-    if (sessionStorage.getItem('renewalBannerClosed') === 'true') {
-      const banner = document.getElementById('renewal-banner');
-      if (banner) banner.style.display = 'none';
-    }
-  });
-</script>
   <!-- ================= MAIN CONTENT AREA ================= -->
   <main class="flex-grow">
 
@@ -1076,6 +1048,7 @@
           <!-- Featured card: SeRestate 2026 -->
           <button onclick="navigateTo('serestate')" class="text-left bg-brand-950 rounded-2xl overflow-hidden border border-amber-400/60 shadow-sm hover:shadow-lg transition relative group">
             <div class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-amber-500 text-brand-950 text-[11px] font-bold uppercase tracking-wide">In evidenza</div>
+            <img src="img/attivita/serestate_2026.jpg" alt="SeRestate 2026" class="w-full h-56 object-contain bg-brand-950 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-emerald-200">
                 <i class="fa-regular fa-calendar text-amber-400"></i> Dal 2 al 28 agosto 2026
@@ -1087,7 +1060,7 @@
           </button>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/2_giugno_2026.jpg" alt="Festa della Repubblica 2026" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 2 giugno 2026
@@ -1097,7 +1070,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/2_memoria_Marzaroli.jpg" alt="II memorial Gilberto Marzaroli" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 18-30 maggio 2026
@@ -1107,7 +1080,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/anniversario_30.jpg" alt="30° Anniversario" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 19 aprile 2026
@@ -1117,6 +1090,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
+            <img src="img/attivita/festa_patronale_2026.jpg" alt="Festa Patronale 2026" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 11-19 gennaio 2026
@@ -1126,7 +1100,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/concorso_decorazione_natale_2025.png" alt="Concorso per la migliore decorazione di Natale" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 18 gennaio 2026
@@ -1136,7 +1110,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/torneo_scacchi_2026.jpg" alt="Torneo di scacchi 2026" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 11 gennaio 2026
@@ -1146,7 +1120,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/castagnata_nov_2026.jpg" alt="Castagnata" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 30 novembre 2025
@@ -1156,7 +1130,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/mercatini_bassano_2025.jpg" alt="Mercatini di Natale 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 29 novembre 2025
@@ -1166,7 +1140,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/jesolo_sand_2025.jpg" alt="Jesolo Sand Nativity 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 29 novembre 2025
@@ -1176,7 +1150,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/ruota_fortuna_2025.jpg" alt="Ruota della Fortuna" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 29 ottobre 2025
@@ -1186,7 +1160,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/palio_2025.jpg" alt="Palio di Lodi 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 5 ottobre 2025
@@ -1196,7 +1170,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/agricleto_2025.jpg" alt="Agricleto 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 18-19 ottobre 2025
@@ -1206,7 +1180,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/serestate_2025.jpg" alt="SeRestate 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 27 luglio - 31 agosto 2025
@@ -1216,7 +1190,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/festa_country_2025.jpg" alt="Festa Country 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 27 luglio 2025
@@ -1226,7 +1200,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/festa_Repubblica_2025.jpg" alt="Festa della Repubblica 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 2 giugno 2025
@@ -1236,7 +1210,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/supercoppa_2025.jpg" alt="Supercoppa terza divisione 2025" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 24-25 maggio 2025
@@ -1246,7 +1220,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/primo_Marzaroli_2025.jpg" alt="Primo memorial Gilberto Marzaroli" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 12-24 maggio 2025
@@ -1256,6 +1230,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
+            <img src="img/attivita/scegli_me_2025.jpg" alt="Scegli me" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> Data da definire
@@ -1265,17 +1240,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
-            <div class="p-6 space-y-4">
-              <div class="flex items-center gap-2 text-sm text-slate-500">
-                <i class="fa-regular fa-calendar text-brand-700"></i> 11 aprile 2025
-              </div>
-              <h3 class="font-heading text-2xl font-extrabold text-slate-900">Presentazione del libro</h3>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/pomeriggio_danzante_2025.png" alt="Pomeriggio danzante per il tesseramento" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 23 marzo 2025
@@ -1285,7 +1250,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
-            
+            <img src="img/attivita/palio_2024.jpg" alt="Palio di Lodi 2024" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> 6 ottobre 2024
@@ -1295,6 +1260,7 @@
           </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
+            <img src="img/attivita/corso_difesa_2024.jpg" alt="Corso di difesa personale" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <i class="fa-regular fa-calendar text-brand-700"></i> Da lunedì 8 ottobre 2024
@@ -1600,18 +1566,11 @@
       </div>
 
       <div class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="space-y-6">
-          <article class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Avviso Ufficiale</span>
-            </div>
-            <h2 class="font-heading text-2xl font-bold text-slate-900 mb-3">Campagna Tesseramento Pro Loco</h2>
-            <p class="text-slate-600 leading-relaxed mb-4">
-              È aperta la campagna tesseramento! Diventare socio della Pro Loco significa sostenere attivamente le iniziative del paese ed essere parte integrante della comunità.
-            </p>
-          </article>
+        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <p class="text-slate-600">Nessuna comunicazione in pubblicazione.</p>
         </div>
       </div>
+
     </section>
 
     <!-- ---------------- PAGE 4: IL DIRETTIVO (AGGIORNATO) ---------------- -->
@@ -1752,6 +1711,13 @@
           <div class="w-full max-w-xl">
             <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
               <h3 class="font-heading text-xl font-bold text-slate-900 mb-4 text-center">Contatti</h3>
+              <div class="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-center">
+                <h4 class="font-heading font-bold text-slate-900 mb-2">Tesseramento 2026</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  Per richiedere informazioni sul tesseramento 2026, scrivi a
+                  <a href="mailto:prolocosanbassano@libero.it?subject=Informazioni%20tesseramento%202026" class="font-semibold text-brand-700 hover:text-brand-900 underline">prolocosanbassano@libero.it</a>.
+                </p>
+              </div>
               <div class="space-y-4 text-sm text-slate-600">
                 <a href="mailto:prolocosanbassano@libero.it" class="flex items-center justify-center gap-3 hover:text-brand-700 transition">
                   <i class="fa-solid fa-envelope text-amber-600"></i>
@@ -1868,6 +1834,14 @@
       </div>
     </div>
   </footer>
+
+  <!-- Visualizzatore immagini delle attività -->
+  <div id="activity-image-modal" class="hidden fixed inset-0 z-[100] bg-black/85 p-4 sm:p-8 items-center justify-center" role="dialog" aria-modal="true" aria-label="Immagine ingrandita">
+    <button id="activity-image-close" type="button" class="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-white text-slate-900 shadow-lg hover:bg-slate-100 transition" aria-label="Chiudi immagine">
+      <i class="fa-solid fa-xmark text-xl"></i>
+    </button>
+    <img id="activity-image-large" src="" alt="" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl">
+  </div>
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
@@ -2032,6 +2006,50 @@
         toast.classList.remove('flex');
       }, 4000);
     }
+
+    /* Ingrandimento delle immagini nella pagina Le Attività */
+    (function initActivityImageViewer() {
+      const modal = document.getElementById('activity-image-modal');
+      const largeImage = document.getElementById('activity-image-large');
+      const closeButton = document.getElementById('activity-image-close');
+      const activityImages = document.querySelectorAll('#page-attivita div.bg-white > img[src^="img/attivita/"]');
+
+      if (!modal || !largeImage || !closeButton) return;
+
+      function openImage(image) {
+        largeImage.src = image.src;
+        largeImage.alt = image.alt;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      }
+
+      function closeImage() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        largeImage.src = '';
+        document.body.style.overflow = '';
+      }
+
+      activityImages.forEach(image => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'mx-6 mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-700 hover:text-brand-900 transition';
+        button.setAttribute('aria-label', `Ingrandisci: ${image.alt}`);
+        button.innerHTML = '<i class="fa-solid fa-magnifying-glass-plus"></i><span>Ingrandisci foto</span>';
+        button.addEventListener('click', () => openImage(image));
+        image.insertAdjacentElement('afterend', button);
+      });
+
+      closeButton.addEventListener('click', closeImage);
+      modal.addEventListener('click', event => {
+        if (event.target === modal) closeImage();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) closeImage();
+      });
+    })();
   </script>
 
 </body>
