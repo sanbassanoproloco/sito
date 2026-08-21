@@ -479,52 +479,6 @@
     border-radius:999px;
     font-weight:600;
   }
-  #page-serestate .cancel-banner{
-    position:relative;
-    z-index:5;
-    display:flex;
-    align-items:flex-start;
-    gap:14px;
-    max-width:900px;
-    margin:0 auto;
-    padding:16px 20px;
-    background:rgba(201,112,126,0.14);
-    border:1px solid rgba(201,112,126,0.55);
-    border-radius:14px;
-    color:#f7e6e9;
-  }
-  #page-serestate .cancel-banner .icon{
-    flex-shrink:0;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:var(--rose);
-    color:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:15px;
-  }
-  #page-serestate .cancel-banner strong{ color:var(--gold-soft); }
-  #page-serestate .cancel-banner .label{
-    font-family:'Manrope',sans-serif;
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:var(--rose);
-    margin:0 0 4px;
-  }
-  #page-serestate .cancel-banner p{
-    font-family:'Manrope',sans-serif;
-    font-size:14.5px;
-    line-height:1.5;
-    margin:0;
-    color:#f0dde0;
-  }
-  #page-serestate .cancel-banner-wrap{
-    padding:18px 20px 0;
-  }
   #page-serestate .event.is-cancelled .event-card{
     border-color:rgba(201,112,126,0.55);
     box-shadow:0 0 0 1px rgba(201,112,126,0.3);
@@ -767,24 +721,6 @@
   height: 100%;
   border: 0;
   display: block;
-}
-
-/* Centra il wrapper nella pagina */
-.cancel-banner-wrap {
-  width: 100%;
-  max-width: 800px; /* Imposta la larghezza massima desiderata */
-  margin: 0 auto 2rem auto; /* margin: 0 auto centra l'elemento orizzontalmente */
-  padding: 0 15px; /* Evita che il banner tocchi i bordi su schermi piccoli */
-  box-sizing: border-box;
-}
-
-/* Centra gli elementi all'interno del banner */
-.cancel-banner {
-  display: flex;
-  align-items: center; /* Allinea icona e testo verticalmente */
-  justify-content: center; /* Centra il contenuto orizzontalmente */
-  gap: 15px; /* Spazio tra icona e testo */
-  text-align: left; /* Mantiene il testo leggibile; usa 'center' se vuoi anche il testo centrato */
 }
 
 /* leggero effetto hover sul contenitore, coerente con altre card interattive */
@@ -1415,15 +1351,6 @@
 
     <!-- ---------------- PAGE: SERESTATE 2026 ---------------- -->
     <section id="page-serestate" class="page-section">
-<div class="cancel-banner-wrap">
-  <div class="cancel-banner">
-    <span class="icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
-    <div>
-      <p class="label">Comunicazione ufficiale</p>
-      <p>La serata di <strong>giovedì 20 agosto</strong> con <strong>Laura Talenti Orchestra</strong> è <strong>annullata a causa del maltempo</strong>. Ci scusiamo per il disagio: vi aspettiamo ai prossimi appuntamenti del calendario.</p>
-    </div>
-  </div>
-</div>
 <section class="hero">
   <canvas id="stars-canvas" aria-hidden="true"></canvas>
   <div class="hero-content">
@@ -1716,30 +1643,8 @@
       </div>
 
       <div class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl border-2 border-red-300 shadow-sm overflow-hidden">
-          <div class="bg-red-50 border-b border-red-200 px-6 sm:px-8 py-4 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center shrink-0">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-            </div>
-            <div>
-              <p class="text-xs font-bold uppercase tracking-wider text-red-700">Comunicazione ufficiale</p>
-              <p class="text-sm text-red-600">Data di pubblicazione: 19 agosto 2026</p>
-            </div>
-          </div>
-          <div class="px-6 sm:px-8 py-6 space-y-3">
-            <h2 class="font-heading text-2xl font-extrabold text-slate-900">Annullamento serata del 20 agosto 2026 - SeRestate 2026</h2>
-            <p class="text-slate-700 leading-relaxed">
-              ProLoco San Bassano APS comunica che, a causa delle avverse condizioni meteorologiche previste, la serata di giovedì 20 agosto 2026 con <strong>Laura Talenti Orchestra</strong>, in programma nell'ambito di SeRestate 2026, è <strong>annullata</strong>.
-            </p>
-            <p class="text-slate-700 leading-relaxed">
-              Ci scusiamo per il disagio e ringraziamo per la comprensione. Vi aspettiamo ai prossimi appuntamenti del calendario estivo.
-            </p>
-            <div class="pt-2">
-              <button onclick="navigateTo('serestate')" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-800 hover:text-brand-900">
-                Vai al calendario di SeRestate <i class="fa-solid fa-arrow-right"></i>
-              </button>
-            </div>
-          </div>
+        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <p class="text-slate-600">Nessuna comunicazione in pubblicazione.</p>
         </div>
       </div>
 
@@ -2015,44 +1920,8 @@
     <img id="activity-image-large" src="" alt="" class="max-w-full max-h-full object-contain rounded-xl shadow-2xl">
   </div>
 
-  <!-- ================= POP-UP AVVISO ANNULLAMENTO ================= -->
-  <div id="cancel-popup" class="fixed bottom-4 right-4 z-50 max-w-sm w-[calc(100%-2rem)] sm:w-96 bg-white rounded-2xl shadow-2xl border-2 border-red-300 overflow-hidden hidden">
-    <div class="flex items-start gap-3 p-4">
-      <div class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-      </div>
-      <div class="flex-1 min-w-0">
-        <p class="text-xs font-bold uppercase tracking-wider text-red-700">Avviso SeRestate 2026</p>
-        <p class="text-sm text-slate-700 mt-1 leading-snug">
-          La serata del <strong>20 agosto</strong> con Laura Talenti Orchestra è stata <strong>annullata</strong> a causa del maltempo.
-        </p>
-        <button onclick="navigateTo('comunicazioni'); closeCancelPopup();" class="mt-2 text-sm font-semibold text-brand-800 hover:text-brand-900 inline-flex items-center gap-1">
-          Leggi la comunicazione <i class="fa-solid fa-arrow-right text-xs"></i>
-        </button>
-      </div>
-      <button onclick="closeCancelPopup()" aria-label="Chiudi avviso" class="shrink-0 text-slate-400 hover:text-slate-600 -mt-1 -mr-1 p-1">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-  </div>
-
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    function closeCancelPopup() {
-      const popup = document.getElementById('cancel-popup');
-      if (popup) popup.classList.add('hidden');
-      sessionStorage.setItem('cancelPopupClosed', '1');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      if (!sessionStorage.getItem('cancelPopupClosed')) {
-        setTimeout(() => {
-          const popup = document.getElementById('cancel-popup');
-          if (popup) popup.classList.remove('hidden');
-        }, 600);
-      }
-    });
-
     function navigateTo(pageId) {
       document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
