@@ -59,6 +59,67 @@
     }
   </script>
 
+  <!-- Firebase (per le Comunicazioni gestite dal pannello admin.html) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, query, where, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { firebaseConfig } from "./firebase-config.js";
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    function escapeHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = str || '';
+      return d.innerHTML;
+    }
+
+    function formatDataIt(dataStr) {
+      if (!dataStr) return '';
+      const d = new Date(dataStr + 'T00:00:00');
+      if (isNaN(d)) return dataStr;
+      return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    async function caricaComunicazioni() {
+      const container = document.getElementById('comunicazioni-list');
+      if (!container) return;
+      container.innerHTML = '<div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center"><p class="text-slate-600">Caricamento comunicazioni...</p></div>';
+
+      try {
+        const q = query(
+          collection(db, 'comunicazioni'),
+          where('pubblicato', '==', true),
+          orderBy('data', 'desc')
+        );
+        const snap = await getDocs(q);
+
+        if (snap.empty) {
+          container.innerHTML = '<div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center"><p class="text-slate-600">Nessuna comunicazione in pubblicazione.</p></div>';
+          return;
+        }
+
+        let html = '<div class="space-y-6">';
+        snap.forEach(docSnap => {
+          const c = docSnap.data();
+          html += `
+            <article class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-wider text-amber-600 mb-2">${escapeHtml(formatDataIt(c.data))}</p>
+              <h3 class="font-heading text-xl font-extrabold text-slate-900 mb-3">${escapeHtml(c.titolo)}</h3>
+              <div class="text-slate-700 leading-relaxed whitespace-pre-line">${escapeHtml(c.testo)}</div>
+            </article>`;
+        });
+        html += '</div>';
+        container.innerHTML = html;
+      } catch (err) {
+        console.error('Errore caricamento comunicazioni:', err);
+        container.innerHTML = '<div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center"><p class="text-red-600">Non è stato possibile caricare le comunicazioni. Riprova più tardi.</p></div>';
+      }
+    }
+
+    window.caricaComunicazioni = caricaComunicazioni;
+  </script>
+
   <style>
     .glass-card {
       background: rgba(255, 255, 255, 0.95);
@@ -1656,8 +1717,10 @@
       </div>
 
       <div class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
-          <p class="text-slate-600">Nessuna comunicazione in pubblicazione.</p>
+        <div id="comunicazioni-list">
+          <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm text-center">
+            <p class="text-slate-600">Caricamento comunicazioni...</p>
+          </div>
         </div>
       </div>
 
@@ -1963,7 +2026,19 @@
       if (pageId === 'serestate') {
         initSerestate();
       }
+
+      if (pageId === 'comunicazioni' && window.caricaComunicazioni) {
+        window.caricaComunicazioni();
+      }
     }
+
+    // Se la pagina si apre già sulla sezione Comunicazioni (o all'avvio), carica i dati
+    document.addEventListener('DOMContentLoaded', () => {
+      const comunicazioniPage = document.getElementById('page-comunicazioni');
+      if (comunicazioniPage && comunicazioniPage.classList.contains('active') && window.caricaComunicazioni) {
+        window.caricaComunicazioni();
+      }
+    });
 
     /* ===== SeRestate 2026: logica pagina (stelle, reveal, stato serate) ===== */
     let serestateInitialized = false;
