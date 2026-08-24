@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Gazzetta del Sodalizio — Pro Loco San Bassano</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --cream: #F4EEE0;
+  --paper: #FBF8F0;
+  --ink: #2E2A22;
+  --ink-soft: #5B5546;
+  --terracotta: #B8552E;
+  --terracotta-deep: #8F3F20;
+  --wheat: #D9B872;
+  --sage: #74805F;
+  --rule: #D8CCA9;
+  --shadow: 0 2px 0 rgba(46,42,34,0.08);
+  font-family: 'Inter', sans-serif;
+}
+
+*{ box-sizing: border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app{ max-width: 780px; margin: 0 auto; padding: 0 0 80px; }
+
+/* ===== MASTHEAD ===== */
+.masthead{
+  border-bottom: 4px double var(--ink);
+  padding: 22px 20px 14px;
+  text-align: center;
+  background: var(--paper);
+}
+.masthead .kicker{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px 10px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 12px;
+}
+.masthead h1{
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: clamp(30px, 7vw, 44px);
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: var(--terracotta-deep);
+}
+.masthead .sub{
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* ===== NAV ===== */
+nav.tabs{
+  display: flex;
+  background: var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+nav.tabs button{
+  flex: 1;
+  padding: 13px 6px;
+  background: none;
+  border: none;
+  color: #E9E2CC;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+nav.tabs button:hover{ background: rgba(255,255,255,0.06); }
+nav.tabs button.active{
+  color: var(--wheat);
+  border-bottom-color: var(--terracotta);
+  background: rgba(255,255,255,0.04);
+}
+nav.tabs button:focus-visible{ outline: 2px solid var(--wheat); outline-offset: -2px; }
+
+main{ padding: 22px 18px 0; }
+section.view{ display: none; }
+section.view.active{ display: block; }
+
+.section-label{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 16px;
+}
+.section-label::after{
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* ===== CARDS: AVVISI ===== */
+.card{
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--sage);
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.card.urgente{ border-left-color: var(--terracotta); }
+.card .meta{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.tag{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  padding: 2px 7px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  letter-spacing: 0.06em;
+}
+.tag.urgente{ color: var(--terracotta-deep); }
+.tag.info{ color: var(--sage); }
+.card h3{
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+.card p{ margin: 0; line-height: 1.55; color: var(--ink-soft); font-size: 14.5px; white-space: pre-wrap; }
+.card .actions{ margin-top: 10px; }
+.card .del{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--terracotta-deep);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.empty{
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 34px 10px;
+  border: 1px dashed var(--rule);
+}
+
+/* ===== EVENTI ===== */
+.evento{
+  display: flex;
+  gap: 16px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.evento .data{
+  background: var(--terracotta-deep);
+  color: var(--paper);
+  min-width: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.evento .data .g{ font-size: 24px; font-weight: 700; line-height: 1; }
+.evento .data .m{ font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+.evento .body{ padding: 12px 14px 12px 0; flex: 1; }
+.evento h3{ font-family: 'Fraunces', serif; font-size: 17.5px; margin: 0 0 4px; }
+.evento .luogo{ font-size: 12px; color: var(--sage); font-family: 'IBM Plex Mono', monospace; margin-bottom: 5px; }
+.evento p{ margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; white-space: pre-wrap; }
+.evento .del{ font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--terracotta-deep); background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;margin-top:8px;}
+
+/* ===== AREA SOCI ===== */
+.info-grid{ display: grid; gap: 12px; margin-bottom: 24px; }
+.info-card{
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 16px 18px;
+}
+.info-card .label{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em; color: var(--sage); margin-bottom: 6px;}
+.info-card .value{ font-family:'Fraunces',serif; font-size: 17px; color: var(--ink); }
+.info-card .value small{ font-family:'Inter',sans-serif; font-size: 13px; color: var(--ink-soft); display:block; font-weight:400; margin-top:2px;}
+
+/* ===== ADMIN FORM ===== */
+.admin-banner{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-align: center;
+  padding: 8px;
+  background: var(--sage);
+  color: var(--paper);
+  letter-spacing: 0.05em;
+}
+.form-box{
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 18px;
+  margin-bottom: 22px;
+}
+.form-box h4{ font-family:'Fraunces',serif; margin:0 0 12px; font-size:16px; color: var(--terracotta-deep);}
+.form-row{ margin-bottom: 10px; }
+.form-row label{ display:block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color: var(--ink-soft); margin-bottom:4px;}
+.form-row input, .form-row textarea, .form-row select{
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  background: var(--cream);
+  color: var(--ink);
+}
+.form-row input:focus, .form-row textarea:focus, .form-row select:focus{ outline: 2px solid var(--terracotta); outline-offset:1px; }
+.form-row textarea{ min-height: 64px; resize: vertical; }
+.form-row.inline{ display:flex; gap:10px; }
+.form-row.inline > div{ flex:1; }
+.btn{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--terracotta);
+  color: var(--paper);
+  border: none;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn:hover{ background: var(--terracotta-deep); }
+.btn:disabled{ opacity: 0.5; cursor: default; }
+.btn:focus-visible{ outline: 2px solid var(--ink); outline-offset: 2px; }
+.checkbox-row{ display:flex; align-items:center; gap:8px; }
+.checkbox-row input{ width:auto; }
+
+/* ===== EXTRA POPUP ===== */
+.overlay{
+  position: fixed; inset: 0;
+  background: rgba(46,42,34,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+.overlay.show{ display: flex; }
+.stamp{
+  background: var(--paper);
+  max-width: 420px;
+  width: 100%;
+  border: 3px solid var(--terracotta-deep);
+  padding: 26px 24px 22px;
+  position: relative;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+.stamp::before{
+  content: "EDIZIONE STRAORDINARIA";
+  position: absolute;
+  top: -12px; left: 20px;
+  background: var(--terracotta-deep);
+  color: var(--paper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+}
+.stamp h3{ font-family:'Fraunces',serif; font-size: 22px; margin: 10px 0 8px; color: var(--ink); }
+.stamp p{ font-size: 14px; color: var(--ink-soft); line-height: 1.55; margin: 0 0 16px; white-space: pre-wrap; }
+.stamp .close-row{ display:flex; justify-content:flex-end; gap:10px; }
+.stamp .ghost{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background: none;
+  border: 1px solid var(--rule);
+  padding: 9px 16px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.status-banner{
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-align: center;
+  padding: 8px;
+  background: var(--terracotta-deep);
+  color: var(--paper);
+  letter-spacing: 0.03em;
+  display: none;
+}
+.status-banner.show{ display: block; }
+
+footer{
+  text-align: center;
+  padding: 30px 20px 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+}
+
+.loading{ text-align:center; padding: 40px; font-family:'Fraunces',serif; font-style:italic; color: var(--ink-soft); }
+
+@media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="masthead">
+    <div class="kicker">
+      <span id="datelineToday">—</span>
+      <span>San Bassano · CR</span>
+    </div>
+    <h1>La Gazzetta del Sodalizio</h1>
+    <div class="sub">Comunicazioni per gli associati della Pro Loco San Bassano APS</div>
+  </div>
+
+  <div class="status-banner" id="statusBanner"></div>
+
+  <nav class="tabs">
+    <button data-view="bacheca" class="active">Bacheca</button>
+    <button data-view="eventi">Eventi</button>
+    <button data-view="soci">Area Soci</button>
+  </nav>
+
+  <div id="adminBanner" class="admin-banner" style="display:none;">Modalità direttivo attiva — le pubblicazioni sono visibili a tutti in tempo reale</div>
+
+  <main>
+    <!-- BACHECA -->
+    <section class="view active" id="view-bacheca">
+      <div class="section-label">Avvisi &amp; notizie</div>
+      <div id="adminFormAvviso"></div>
+      <div id="listaAvvisi"><div class="loading">Sto caricando la bacheca…</div></div>
+    </section>
+
+    <!-- EVENTI -->
+    <section class="view" id="view-eventi">
+      <div class="section-label">Prossimi appuntamenti</div>
+      <div id="adminFormEvento"></div>
+      <div id="listaEventi"><div class="loading">Sto caricando il calendario…</div></div>
+    </section>
+
+    <!-- AREA SOCI -->
+    <section class="view" id="view-soci">
+      <div class="section-label">Informazioni per gli associati</div>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="label">Direttivo</div>
+          <div class="value">Scrivi al direttivo<small>info@prolocosanbassano.it</small></div>
+        </div>
+        <div class="info-card">
+          <div class="label">Quota associativa</div>
+          <div class="value">Tesseramento annuale<small>Rinnovo in sede o alle serate del sodalizio</small></div>
+        </div>
+        <div class="info-card">
+          <div class="label">Sede</div>
+          <div class="value">San Bassano (CR)<small>Gli orari di apertura sono comunicati in bacheca</small></div>
+        </div>
+      </div>
+      <div class="section-label">Ultime comunicazioni ufficiali</div>
+      <div id="listaSociAvvisi"></div>
+    </section>
+  </main>
+
+  <footer>Pro Loco San Bassano APS — spazio riservato agli associati</footer>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="stamp">
+    <h3 id="stampTitolo">—</h3>
+    <p id="stampTesto">—</p>
+    <div class="close-row">
+      <button class="ghost" id="stampChiudi">Ho letto, chiudi</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+/* ============================================================
+   CONFIGURAZIONE FIREBASE
+   Sostituisci i valori qui sotto con quelli del tuo progetto
+   Firebase (Console Firebase → Impostazioni progetto → Le tue app
+   → Configurazione SDK). Vedi le istruzioni di impostazione
+   fornite insieme a questo file.
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyAf8Q2963Y605vmappZmPw344czSwyMNXo",
+  authDomain: "comunicazioni-proloco.firebaseapp.com",
+  projectId: "comunicazioni-proloco",
+  storageBucket: "comunicazioni-proloco.firebasestorage.app",
+  messagingSenderId: "780966608809",
+  appId: "1:780966608809:web:964a7ef79738d085ceceb8"
+  measurementId: "G-PHST1X96ML"
+};
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getFirestore, collection, addDoc, deleteDoc, doc,
+  onSnapshot, query, orderBy
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const CONFIGURATO = firebaseConfig.apiKey && !firebaseConfig.apiKey.startsWith("INSERISCI");
+const statusBanner = document.getElementById('statusBanner');
+
+let db = null;
+if(CONFIGURATO){
+  try{
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+  }catch(e){
+    console.error("Errore di inizializzazione Firebase", e);
+  }
+}
+if(!CONFIGURATO || !db){
+  statusBanner.textContent = "Configurazione Firebase mancante: segui le istruzioni per collegare l'archivio condiviso.";
+  statusBanner.classList.add('show');
+}
+
+const ADMIN = new URLSearchParams(location.search).get('admin') === '1';
+
+const MESI = ['GEN','FEB','MAR','APR','MAG','GIU','LUG','AGO','SET','OTT','NOV','DIC'];
+const MESI_LUNGHI = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+const GIORNI = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+
+function oggiFmt(){
+  const d = new Date();
+  return `${GIORNI[d.getDay()]} ${d.getDate()} ${MESI_LUNGHI[d.getMonth()]} ${d.getFullYear()}`;
+}
+document.getElementById('datelineToday').textContent = oggiFmt();
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ---------- STATO LOCALE (letto solo su questo dispositivo, per il popup) ----------
+function getRead(){
+  try{ return JSON.parse(localStorage.getItem('avvisi-letti') || '[]'); }catch(e){ return []; }
+}
+function markRead(id){
+  const letti = getRead();
+  if(!letti.includes(id)) letti.push(id);
+  try{ localStorage.setItem('avvisi-letti', JSON.stringify(letti)); }catch(e){}
+}
+
+let avvisi = [];
+let eventi = [];
+
+// ---------- RENDER: AVVISI ----------
+function renderAvvisi(){
+  const cont = document.getElementById('listaAvvisi');
+  const contSoci = document.getElementById('listaSociAvvisi');
+  if(!avvisi.length){
+    const msg = CONFIGURATO ? 'Nessun avviso al momento. Torna a trovarci presto.' : 'Collega l\'archivio Firebase per pubblicare i primi avvisi.';
+    cont.innerHTML = `<div class="empty">${msg}</div>`;
+    contSoci.innerHTML = '';
+    return;
+  }
+  const ordinati = [...avvisi].sort((a,b) => (b.data||'').localeCompare(a.data||'') || (b.urgente - a.urgente));
+  const html = ordinati.map(a => {
+    const d = a.data ? new Date(a.data + 'T00:00:00') : null;
+    const dataFmt = d ? `${d.getDate()} ${MESI_LUNGHI[d.getMonth()]} ${d.getFullYear()}` : '';
+    return `
+    <div class="card ${a.urgente ? 'urgente' : ''}">
+      <div class="meta">
+        <span class="tag ${a.urgente ? 'urgente' : 'info'}">${a.urgente ? 'Urgente' : 'Avviso'}</span>
+        <span>${escapeHtml(dataFmt)}</span>
+      </div>
+      <h3>${escapeHtml(a.titolo)}</h3>
+      <p>${escapeHtml(a.testo)}</p>
+      ${ADMIN ? `<div class="actions"><button class="del" data-del-avviso="${a.id}">Rimuovi avviso</button></div>` : ''}
+    </div>`;
+  }).join('');
+  cont.innerHTML = html;
+  contSoci.innerHTML = html;
+
+  if(ADMIN){
+    cont.querySelectorAll('[data-del-avviso]').forEach(btn => {
+      btn.addEventListener('click', () => eliminaAvviso(btn.dataset.delAvviso));
+    });
+  }
+}
+
+// ---------- RENDER: EVENTI ----------
+function renderEventi(){
+  const cont = document.getElementById('listaEventi');
+  if(!eventi.length){
+    const msg = CONFIGURATO ? 'Nessun evento in calendario al momento.' : 'Collega l\'archivio Firebase per pubblicare i primi eventi.';
+    cont.innerHTML = `<div class="empty">${msg}</div>`;
+    return;
+  }
+  const oggiStr = new Date().toISOString().slice(0,10);
+  const ordinati = [...eventi].sort((a,b) => (a.data||'').localeCompare(b.data||''));
+  cont.innerHTML = ordinati.map(e => {
+    const d = e.data ? new Date(e.data + 'T00:00:00') : null;
+    const passato = e.data && e.data < oggiStr;
+    return `
+    <div class="evento" style="${passato ? 'opacity:.55;' : ''}">
+      <div class="data">
+        <div class="g">${d ? d.getDate() : '—'}</div>
+        <div class="m">${d ? MESI[d.getMonth()] : ''}</div>
+      </div>
+      <div class="body">
+        <h3>${escapeHtml(e.titolo)}</h3>
+        ${e.luogo ? `<div class="luogo">${escapeHtml(e.luogo)}</div>` : ''}
+        <p>${escapeHtml(e.descrizione || '')}</p>
+        ${ADMIN ? `<button class="del" data-del-evento="${e.id}">Rimuovi evento</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  if(ADMIN){
+    cont.querySelectorAll('[data-del-evento]').forEach(btn => {
+      btn.addEventListener('click', () => eliminaEvento(btn.dataset.delEvento));
+    });
+  }
+}
+
+// ---------- SCRITTURA SU FIRESTORE ----------
+async function pubblicaAvviso(dati){
+  if(!db) return false;
+  try{
+    await addDoc(collection(db, 'avvisi'), dati);
+    return true;
+  }catch(e){ console.error(e); alert('Non sono riuscito a pubblicare l\'avviso. Controlla la configurazione Firebase e le regole di sicurezza.'); return false; }
+}
+async function eliminaAvviso(id){
+  if(!db) return;
+  try{ await deleteDoc(doc(db, 'avvisi', id)); }
+  catch(e){ console.error(e); alert('Non sono riuscito a rimuovere l\'avviso.'); }
+}
+async function pubblicaEvento(dati){
+  if(!db) return false;
+  try{
+    await addDoc(collection(db, 'eventi'), dati);
+    return true;
+  }catch(e){ console.error(e); alert('Non sono riuscito a pubblicare l\'evento. Controlla la configurazione Firebase e le regole di sicurezza.'); return false; }
+}
+async function eliminaEvento(id){
+  if(!db) return;
+  try{ await deleteDoc(doc(db, 'eventi', id)); }
+  catch(e){ console.error(e); alert('Non sono riuscito a rimuovere l\'evento.'); }
+}
+
+// ---------- ASCOLTO IN TEMPO REALE ----------
+function avviaAscolto(){
+  if(!db) return;
+  onSnapshot(query(collection(db, 'avvisi'), orderBy('data', 'desc')), snap => {
+    avvisi = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderAvvisi();
+    checkUrgente();
+  }, err => console.error('Errore lettura avvisi', err));
+
+  onSnapshot(query(collection(db, 'eventi'), orderBy('data', 'asc')), snap => {
+    eventi = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderEventi();
+  }, err => console.error('Errore lettura eventi', err));
+}
+
+// ---------- ADMIN FORMS ----------
+function renderAdminForms(){
+  if(!ADMIN) return;
+  document.getElementById('adminBanner').style.display = 'block';
+
+  document.getElementById('adminFormAvviso').innerHTML = `
+    <div class="form-box">
+      <h4>Pubblica un nuovo avviso</h4>
+      <div class="form-row">
+        <label for="fTitoloAvviso">Titolo</label>
+        <input id="fTitoloAvviso" type="text" placeholder="Es. Convocazione assemblea">
+      </div>
+      <div class="form-row">
+        <label for="fTestoAvviso">Testo</label>
+        <textarea id="fTestoAvviso" placeholder="Contenuto dell'avviso"></textarea>
+      </div>
+      <div class="form-row inline">
+        <div>
+          <label for="fDataAvviso">Data</label>
+          <input id="fDataAvviso" type="date">
+        </div>
+        <div class="checkbox-row" style="margin-top:20px;">
+          <input id="fUrgente" type="checkbox">
+          <label for="fUrgente" style="margin:0;">Segna come urgente (mostra popup)</label>
+        </div>
+      </div>
+      <button class="btn" id="btnPubblicaAvviso" ${CONFIGURATO ? '' : 'disabled'}>Pubblica avviso</button>
+    </div>`;
+  document.getElementById('fDataAvviso').value = new Date().toISOString().slice(0,10);
+  document.getElementById('btnPubblicaAvviso').addEventListener('click', async () => {
+    const titolo = document.getElementById('fTitoloAvviso').value.trim();
+    const testo = document.getElementById('fTestoAvviso').value.trim();
+    const data = document.getElementById('fDataAvviso').value || new Date().toISOString().slice(0,10);
+    const urgente = document.getElementById('fUrgente').checked;
+    if(!titolo || !testo){ alert('Inserisci titolo e testo dell\'avviso.'); return; }
+    const ok = await pubblicaAvviso({ titolo, testo, data, urgente });
+    if(!ok) return;
+    document.getElementById('fTitoloAvviso').value = '';
+    document.getElementById('fTestoAvviso').value = '';
+    document.getElementById('fUrgente').checked = false;
+  });
+
+  document.getElementById('adminFormEvento').innerHTML = `
+    <div class="form-box">
+      <h4>Aggiungi un evento</h4>
+      <div class="form-row">
+        <label for="fTitoloEvento">Titolo</label>
+        <input id="fTitoloEvento" type="text" placeholder="Es. Festa di San Rocco">
+      </div>
+      <div class="form-row inline">
+        <div>
+          <label for="fDataEvento">Data</label>
+          <input id="fDataEvento" type="date">
+        </div>
+        <div>
+          <label for="fLuogoEvento">Luogo</label>
+          <input id="fLuogoEvento" type="text" placeholder="Es. Piazza del paese">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="fDescEvento">Descrizione</label>
+        <textarea id="fDescEvento" placeholder="Dettagli dell'evento"></textarea>
+      </div>
+      <button class="btn" id="btnPubblicaEvento" ${CONFIGURATO ? '' : 'disabled'}>Aggiungi evento</button>
+    </div>`;
+  document.getElementById('btnPubblicaEvento').addEventListener('click', async () => {
+    const titolo = document.getElementById('fTitoloEvento').value.trim();
+    const data = document.getElementById('fDataEvento').value;
+    const luogo = document.getElementById('fLuogoEvento').value.trim();
+    const descrizione = document.getElementById('fDescEvento').value.trim();
+    if(!titolo || !data){ alert('Inserisci almeno titolo e data dell\'evento.'); return; }
+    const ok = await pubblicaEvento({ titolo, data, luogo, descrizione });
+    if(!ok) return;
+    document.getElementById('fTitoloEvento').value = '';
+    document.getElementById('fDataEvento').value = '';
+    document.getElementById('fLuogoEvento').value = '';
+    document.getElementById('fDescEvento').value = '';
+  });
+}
+
+// ---------- POPUP EDIZIONE STRAORDINARIA ----------
+function checkUrgente(){
+  const letti = getRead();
+  const urgente = [...avvisi].sort((a,b) => (b.data||'').localeCompare(a.data||'')).find(a => a.urgente && !letti.includes(a.id));
+  if(!urgente) return;
+  document.getElementById('stampTitolo').textContent = urgente.titolo;
+  document.getElementById('stampTesto').textContent = urgente.testo;
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('stampChiudi').onclick = () => {
+    markRead(urgente.id);
+    document.getElementById('overlay').classList.remove('show');
+  };
+}
+
+// ---------- NAV ----------
+document.querySelectorAll('nav.tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('section.view').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('view-' + btn.dataset.view).classList.add('active');
+  });
+});
+
+// ---------- INIT ----------
+renderAdminForms();
+renderAvvisi();
+renderEventi();
+avviaAscolto();
+</script>
+</body>
+</html>
