@@ -76,6 +76,26 @@
   <!-- PANNELLO (visibile dopo login) -->
   <main id="admin-view" class="hidden max-w-5xl mx-auto px-4 sm:px-8 py-10 space-y-10">
 
+    <!-- Pannello Istruzioni -->
+    <section class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 sm:p-8 text-emerald-950 shadow-sm">
+      <div class="flex items-start gap-4">
+        <div class="p-3 bg-brand-800 text-white rounded-xl shrink-0 mt-1">
+          <i class="fa-solid fa-circle-info text-xl"></i>
+        </div>
+        <div class="space-y-2">
+          <h2 class="font-heading text-lg font-bold text-brand-900">Istruzioni per l'utilizzo del pannello</h2>
+          <p class="text-sm text-emerald-900 leading-relaxed">
+            Benvenuto nel sistema di gestione delle comunicazioni della Pro Loco San Bassano APS. Da qui puoi pubblicare avvisi, convocazioni o notizie in tempo reale sul sito ufficiale.
+          </p>
+          <ul class="text-sm space-y-1.5 text-emerald-900 pt-1 list-disc list-inside">
+            <li><strong>Nuova comunicazione:</strong> Compila i campi <em>Titolo</em>, <em>Data</em> e <em>Testo</em> nel modulo sottostante. Scegli se pubblicarla subito o lasciarla come bozza spuntando l'apposita casella.</li>
+            <li><strong>Gestione bozze:</strong> Una comunicazione salvata come "Bozza" non sarà visibile ai visitatori del sito pubblico finché non deciderai di attivarla.</li>
+            <li><strong>Modifiche ed eliminazione:</strong> Usa i pulsanti a fianco di ciascun elemento nell'elenco sottostante per modificare il contenuto, cambiare lo stato di visibilità o eliminare definitivamente l'avviso.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- Form nuova/modifica comunicazione -->
     <section class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
       <h2 id="form-title" class="font-heading text-lg font-bold text-slate-900 mb-5">
