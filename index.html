@@ -829,7 +829,6 @@
           <button onclick="navigateTo('comunicazioni')" data-nav="comunicazioni" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Comunicazioni</button>
           <button onclick="navigateTo('direttivo')" data-nav="direttivo" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Il Direttivo</button>
           <button onclick="navigateTo('contattaci')" data-nav="contattaci" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-emerald-100">Contattaci</button>
-          <button onclick="navigateTo('serestate')" data-nav="serestate" class="nav-btn px-3 py-2 rounded-md text-sm font-semibold transition hover:bg-white/10 text-amber-300">SeRestate 2026</button>
           
           <!-- Special CTA for 5x1000 -->
           <button onclick="navigateTo('5x1000')" data-nav="5x1000" class="nav-btn ml-2 px-4 py-2 rounded-lg text-sm font-bold bg-amber-500 hover:bg-amber-400 text-brand-950 shadow-sm transition transform hover:-translate-y-0.5 flex items-center gap-1.5">
@@ -854,7 +853,6 @@
       <button onclick="navigateTo('comunicazioni')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Comunicazioni</button>
       <button onclick="navigateTo('direttivo')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Il Direttivo</button>
       <button onclick="navigateTo('contattaci')" class="w-full text-left px-3 py-2.5 rounded-md font-medium text-emerald-100 hover:bg-brand-800">Contattaci</button>
-      <button onclick="navigateTo('serestate')" class="w-full text-left px-3 py-2.5 rounded-md font-semibold text-amber-300 hover:bg-brand-800">SeRestate 2026</button>
       <button onclick="navigateTo('5x1000')" class="w-full text-center mt-2 px-4 py-3 rounded-md font-bold bg-amber-500 text-brand-950 flex items-center justify-center gap-2">
         <i class="fa-solid fa-heart text-red-700"></i> Sostienici con il 5X1000
       </button>
@@ -1129,19 +1127,17 @@
 
       <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Featured card: SeRestate 2026 -->
-          <button onclick="navigateTo('serestate')" class="text-left bg-brand-950 rounded-2xl overflow-hidden border border-amber-400/60 shadow-sm hover:shadow-lg transition relative group">
-            <div class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-amber-500 text-brand-950 text-[11px] font-bold uppercase tracking-wide">Edizione conclusa</div>
-            <img src="img/attivita/serestate_2026.jpg" alt="SeRestate 2026" class="w-full h-56 object-contain bg-brand-950 p-2">
+          <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
+            <img src="img/attivita/serestate_2026.jpg" alt="SeRestate 2026" class="w-full h-56 object-contain bg-slate-100 p-2">
             <div class="p-6 space-y-4">
-              <div class="flex items-center gap-2 text-sm text-emerald-200">
-                <i class="fa-regular fa-calendar text-amber-400"></i> Dal 2 al 28 agosto 2026
+              <div class="flex items-center gap-2 text-sm text-slate-500">
+                <i class="fa-regular fa-calendar text-brand-700"></i> Dal 2 al 28 agosto 2026
               </div>
-              <h3 class="font-heading text-2xl font-extrabold text-white italic">SeRestate <span class="text-amber-400 not-italic">2026</span></h3>
-              <p class="text-emerald-100 text-sm leading-relaxed">Ballo liscio, tribute band e la Festa country: rivivi le serate dell'edizione 2026 di SeRestate.</p>
-              <span class="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold group-hover:gap-3 transition-all">Rivivi l'edizione 2026 <i class="fa-solid fa-arrow-right"></i></span>
+              <h3 class="font-heading text-2xl font-extrabold text-slate-900">SeRestate 2026</h3>
+              <p class="text-slate-600 text-sm leading-relaxed">Ballo liscio, tribute band e la Festa country: rivivi le serate dell'edizione 2026 di SeRestate.</p>
+              <button type="button" onclick="navigateTo('serestate')" class="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-800 focus:outline-none focus:ring-2 focus:ring-brand-700 focus:ring-offset-2">Vai alla sezione dedicata <i class="fa-solid fa-arrow-right"></i></button>
             </div>
-          </button>
+          </div>
 
           <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition">
             <img src="img/attivita/2_giugno_2026.jpg" alt="Festa della Repubblica 2026" class="w-full h-56 object-contain bg-slate-100 p-2">
@@ -1923,7 +1919,6 @@
           <ul class="space-y-2 text-sm text-slate-300">
             <li><a href="#home" onclick="navigateTo('home')" class="hover:text-white transition">Home page</a></li>
             <li><a href="#attivita" onclick="navigateTo('attivita')" class="hover:text-white transition">Le attività</a></li>
-            <li><a href="#serestate" onclick="navigateTo('serestate')" class="hover:text-white transition text-amber-300">SeRestate 2026</a></li>
             <li><a href="#comunicazioni" onclick="navigateTo('comunicazioni')" class="hover:text-white transition">Comunicazioni</a></li>
             <li><a href="#direttivo" onclick="navigateTo('direttivo')" class="hover:text-white transition">Il Direttivo</a></li>
             <li><a href="#5x1000" onclick="navigateTo('5x1000')" class="hover:text-white transition">Sostienici 5X1000</a></li>
@@ -1969,11 +1964,9 @@
         if (btn.getAttribute('data-nav') === pageId) {
           btn.classList.add('bg-white/10', 'text-white');
           btn.classList.remove('text-emerald-100');
-        } else if (btn.getAttribute('data-nav') !== '5x1000' && btn.getAttribute('data-nav') !== 'serestate') {
+        } else if (btn.getAttribute('data-nav') !== '5x1000') {
           btn.classList.remove('bg-white/10', 'text-white');
           btn.classList.add('text-emerald-100');
-        } else if (btn.getAttribute('data-nav') === 'serestate') {
-          btn.classList.remove('bg-white/10', 'text-white');
         }
       });
 
