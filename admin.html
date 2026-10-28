@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestione Comunicazioni — Pro Loco San Bassano APS</title>
+  <title>Gestione del sito — Pro Loco San Bassano APS</title>
   <link rel="icon" type="image/png" href="logo.png">
 
   <!-- Tailwind CSS CDN -->
@@ -41,6 +41,50 @@
     input, textarea { background-color: #fffdf9; }
     input:focus, textarea:focus { border-color: #b94b1d !important; box-shadow: 0 0 0 3px rgba(185,75,29,.13); }
     button, a { transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s ease; }
+
+    [hidden] { display: none !important; }
+    #admin-view { max-width: 1120px; }
+    .workspace-intro { padding: 8px 0 0; }
+    .overline { font-size: .7rem; text-transform: uppercase; letter-spacing: .16em; color: #b94b1d; font-weight: 800; }
+    .workspace-intro h2 { font: 600 clamp(1.8rem,4vw,2.6rem)/1.2 'Fraunces',serif; margin: 10px 0; }
+    .workspace-intro p, .sheet-heading p { color:#7c6957; font-size:.9rem; margin-top:6px; }
+    .editor-tabs { display:flex; gap:6px; padding:6px; width:fit-content; border:1px solid #e4d3bf; background:#f1e5d6; border-radius:18px; }
+    .editor-tabs button { padding:12px 22px; border-radius:12px; font-size:.9rem; font-weight:700; color:#78634f; }
+    .editor-tabs i { margin-right:8px; }
+    .editor-tabs [aria-selected="true"] { background:#fffdf9; color:#a8441b; box-shadow:0 2px 8px #69442112; }
+    .editor-sheet, #pane-comunicazioni > section:first-child { background:#fffdf9; border:1px solid #e7d9c7; border-radius:24px; padding:clamp(22px,4vw,42px); box-shadow:0 12px 40px #59341906; }
+    .sheet-heading { display:flex; gap:16px; align-items:flex-start; margin-bottom:28px; }
+    .sheet-heading h2 { font:600 1.55rem 'Fraunces',serif; }
+    .section-number { color:#b94b1d; background:#f7eadb; border-radius:12px; padding:9px 12px; font-size:.8rem; font-weight:800; }
+    #activity-form fieldset { border:0; padding:0 0 28px; margin:0 0 28px; border-bottom:1px solid #efe5d9; min-width:0; }
+    #activity-form legend { font-weight:800; font-size:.95rem; margin-bottom:16px; }
+    .field { margin-top:18px; }
+    .field label, #comm-form label { display:block; font-size:.8rem; font-weight:700; color:#594331; margin-bottom:8px; }
+    .field input, .field textarea, #comm-form input:not([type=checkbox]), #comm-form textarea { width:100%; background:#fbf8f3; border:1px solid #dfd1bf; border-radius:12px; padding:13px 15px; outline:none; color:#163029; font-size:.95rem; }
+    input::placeholder, textarea::placeholder { color:#a59584; }
+    .field textarea { resize:vertical; min-height:140px; line-height:1.7; }
+    .field-pair { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .field-help { font-size:.78rem; line-height:1.6; color:#8c7763; margin-top:8px; }
+    .upload-zone { border:1px dashed #cbb299; background:#faf3ea; border-radius:16px; padding:24px; display:flex; align-items:center; gap:20px; }
+    .upload-zone > i { color:#b94b1d; font-size:2rem; }
+    .upload-zone label { font-weight:700; font-size:.9rem; }
+    .upload-zone p { font-size:.75rem; color:#8c7763; margin:5px 0 12px; }
+    input[type=file] { max-width:100%; font-size:.8rem; }
+    input[type=file]::file-selector-button { border:0; background:#e9d7c1; color:#6c3f25; padding:8px 12px; border-radius:8px; margin-right:10px; cursor:pointer; }
+    #activity-preview { width:180px; max-height:230px; object-fit:contain; margin-top:18px; border-radius:12px; background:#f3e9dc; }
+    .publish-option { background:#f5f0e8; padding:18px; border-radius:14px; display:flex; gap:12px; align-items:center; }
+    input[type=checkbox] { accent-color:#b94b1d; width:18px; height:18px; flex:none; }
+    .publish-option strong { display:block; font-size:.85rem; }
+    .publish-option span { display:block; font-size:.75rem; color:#8c7763; margin-top:3px; }
+    .form-actions { margin-top:26px; display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+    .primary-action { background:#b94b1d; color:white; border-radius:12px; padding:13px 22px; font-size:.9rem; font-weight:700; }
+    .primary-action:hover { background:#943811; }
+    .secondary-action { border:1px solid #decbb5; padding:13px 20px; border-radius:12px; color:#7c6957; font-size:.85rem; }
+    #activity-feedback { width:100%; font-size:.85rem; color:#835239; }
+    button:disabled { opacity:.55; cursor:wait; }
+    button:focus-visible { outline:3px solid #dfac71; outline-offset:3px; }
+    .archive-section { padding:8px 0; }
+    @media(max-width:600px) { .field-pair { grid-template-columns:1fr; gap:0; } .editor-tabs { width:100%; } .editor-tabs button { flex:1; padding:12px; } .upload-zone { padding:18px; gap:12px; } .workspace-intro h2 { max-width:16ch; } }
   </style>
 </head>
 <body class="font-sans min-h-screen">
@@ -49,7 +93,7 @@
   <header class="bg-brand-950 text-white py-6 px-4 sm:px-8 border-b-4 border-amber-500">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div>
-        <h1 class="font-heading text-2xl font-extrabold">Gestione Comunicazioni</h1>
+        <h1 class="font-heading text-2xl font-extrabold">Gestione del sito</h1>
         <p class="text-amber-100/80 text-sm mt-1">Pro Loco San Bassano APS — Pannello riservato al Direttivo</p>
       </div>
       <div class="flex items-center gap-2">
@@ -88,26 +132,12 @@
   <!-- PANNELLO (visibile dopo login) -->
   <main id="admin-view" class="hidden max-w-5xl mx-auto px-4 sm:px-8 py-10 space-y-10">
 
-    <!-- Pannello Istruzioni -->
-    <section class="bg-[#f7efe4] border border-[#eadbc8] rounded-3xl p-6 sm:p-8 text-[#432818] shadow-sm">
-      <div class="flex items-start gap-4">
-        <div class="p-3 bg-brand-800 text-white rounded-xl shrink-0 mt-1">
-          <i class="fa-solid fa-circle-info text-xl"></i>
-        </div>
-        <div class="space-y-2">
-          <h2 class="font-heading text-xl font-bold text-brand-900">Istruzioni per l'utilizzo del pannello</h2>
-          <p class="text-sm text-[#5a4634] leading-relaxed">
-            Benvenuto nel sistema di gestione delle comunicazioni via sito Web della Pro Loco San Bassano APS. Questo pannello deve essere utilizzato esclusivamente per la pubblicazione di <strong>comunicazioni di tipo ordinario e gestionale</strong>, le quali seguono un formato standardizzato all'interno del sito.
-          </p>
-          <ul class="text-sm space-y-1.5 text-[#5a4634] pt-1 list-disc list-inside">
-            <li><strong>Inserimento avvisi:</strong> Compila i campi <em>Titolo</em>, <em>Data</em> e <em>Testo</em>. Puoi scegliere se pubblicare l'aggiornamento subito o salvarlo come bozza non visibile al pubblico.</li>
-            <li><strong>Gestione rapida:</strong> Usa i pulsanti accanto a ciascun elemento nell'elenco per modificare i testi, attivare/disattivare la visibilità o eliminare la comunicazione.</li>
-            <li><strong>Richieste speciali:</strong> Per l'inserimento di elementi straordinari come pop-up, banner dedicati o comunicazioni di particolare rilievo ed evidenza, è necessario rivolgersi a <strong>Davide</strong>.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
+    <div class="workspace-intro"><span class="overline">Il tuo spazio di lavoro</span><h2>Raccontiamo la vita della Pro Loco.</h2><p>Scegli cosa aggiornare, compila la scheda e pubblica quando è pronta.</p></div>
+    <nav class="editor-tabs" aria-label="Contenuti da gestire" role="tablist">
+      <button type="button" id="tab-comunicazioni" role="tab" aria-selected="true" aria-controls="pane-comunicazioni"><i class="fa-regular fa-message" aria-hidden="true"></i> Comunicazioni</button>
+      <button type="button" id="tab-attivita" role="tab" aria-selected="false" aria-controls="pane-attivita" tabindex="-1"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i> Attività</button>
+    </nav>
+    <div id="pane-comunicazioni" role="tabpanel" aria-labelledby="tab-comunicazioni" class="editor-pane space-y-8">
     <!-- Form nuova/modifica comunicazione -->
     <section class="bg-[#fffdf9] p-6 sm:p-8 rounded-3xl border border-[#eadbc8] shadow-sm">
       <h2 id="form-title" class="font-heading text-xl font-bold text-[#163029] mb-5">
@@ -116,18 +146,18 @@
       <form id="comm-form" class="space-y-4">
         <input type="hidden" id="comm-id" value="">
         <div>
-          <label class="block text-sm font-semibold text-[#432818] mb-1">Titolo</label>
+          <label for="comm-titolo" class="block text-sm font-semibold text-[#432818] mb-1">Titolo</label>
           <input type="text" id="comm-titolo" required maxlength="150" class="w-full px-4 py-2.5 rounded-xl border border-[#d9c7b0] focus:outline-none focus:ring-2 focus:ring-brand-700" placeholder="Es. Convocazione assemblea ordinaria">
         </div>
         <div>
-          <label class="block text-sm font-semibold text-[#432818] mb-1">Data</label>
+          <label for="comm-data" class="block text-sm font-semibold text-[#432818] mb-1">Data</label>
           <input type="date" id="comm-data" required class="w-full sm:w-64 px-4 py-2.5 rounded-xl border border-[#d9c7b0] focus:outline-none focus:ring-2 focus:ring-brand-700">
         </div>
         <div>
-          <label class="block text-sm font-semibold text-[#432818] mb-1">Testo</label>
+          <label for="comm-testo" class="block text-sm font-semibold text-[#432818] mb-1">Testo</label>
           <textarea id="comm-testo" required rows="6" class="w-full px-4 py-2.5 rounded-xl border border-[#d9c7b0] focus:outline-none focus:ring-2 focus:ring-brand-700" placeholder="Scrivi qui il testo della comunicazione..."></textarea>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="publish-option">
           <input type="checkbox" id="comm-pubblicato" checked class="w-4 h-4 rounded border-[#d9c7b0] text-brand-700 focus:ring-brand-700">
           <label for="comm-pubblicato" class="text-sm text-[#432818]">Pubblica subito sul sito</label>
         </div>
@@ -139,7 +169,7 @@
             Annulla modifica
           </button>
         </div>
-        <p id="comm-feedback" class="hidden text-sm font-medium"></p>
+        <p id="comm-feedback" role="status" aria-live="polite" class="hidden text-sm font-medium"></p>
       </form>
     </section>
 
@@ -153,6 +183,15 @@
       </div>
     </section>
 
+</div><div id="pane-attivita" role="tabpanel" aria-labelledby="tab-attivita" class="editor-pane space-y-8" hidden>
+<section id="activities-admin" class="editor-sheet"><div class="sheet-heading"><span class="section-number">01</span><div><h2 id="activity-form-title">Nuova attività</h2><p>Una scheda per ogni appuntamento, dall'annuncio alla locandina.</p></div></div>
+<form id="activity-form"><input id="activity-id" type="hidden"><input id="activity-pagina" type="hidden">
+<fieldset><legend>Le informazioni principali</legend><div class="field"><label for="activity-titolo">Titolo dell’attività</label><input id="activity-titolo" type="text" required maxlength="150" placeholder="Es. Festa d’autunno"></div><div class="field"><label for="activity-descrizione">Descrizione</label><textarea id="activity-descrizione" rows="5" placeholder="Racconta il programma e le informazioni utili…"></textarea></div></fieldset>
+<fieldset><legend>Quando si svolge</legend><p class="field-help">La home mostra l’evento fino all’ultimo giorno compreso. Lascia le date vuote se sono ancora da definire.</p><div class="field-pair"><div class="field"><label for="activity-dataInizio">Data inizio</label><input id="activity-dataInizio" type="date" ></div><div class="field"><label for="activity-dataFine">Data fine · facoltativa</label><input id="activity-dataFine" type="date" ></div></div><div class="field"><label for="activity-dataLabel">Testo della data · facoltativo</label><input id="activity-dataLabel" type="text" placeholder="Es. 28 ottobre 2026, ore 20:30"></div><p class="field-help">Se lasci questo campo vuoto, la data viene formattata automaticamente.</p></fieldset>
+<fieldset><legend>La locandina</legend><p class="field-help">Inserisci il collegamento a un’immagine già online oppure il percorso di un’immagine presente nei file del sito.</p><div class="field"><label for="activity-immagine">Link o percorso della locandina</label><input id="activity-immagine" type="text" placeholder="https://… oppure img/nome-immagine.jpg" autocomplete="url"></div><img id="activity-preview" alt="Anteprima della locandina" hidden></fieldset>
+<div class="publish-option"><input id="activity-pubblicato" type="checkbox" checked><label for="activity-pubblicato"><strong>Pubblica sul sito</strong><span>Disattiva per conservare la scheda come bozza.</span></label></div>
+<div class="form-actions"><button id="activity-save" type="submit" class="primary-action"><i class="fa-solid fa-check" aria-hidden="true"></i> Salva attività</button><button type="button" id="activity-cancel" class="secondary-action">Annulla modifica</button><p id="activity-feedback" role="status" aria-live="polite"></p></div></form></section>
+<section class="archive-section"><div class="sheet-heading"><span class="section-number">02</span><div><h2>Le tue attività</h2><p>Modifica le schede o scegli quali rendere visibili.</p></div></div><div id="activity-list" class="space-y-4"></div></section></div>
   </main>
 
   <script type="module">
@@ -198,6 +237,7 @@
         adminView.classList.remove('hidden');
         btnLogout.classList.remove('hidden');
         caricaElenco();
+        loadActivities();
       } else {
         loginView.classList.remove('hidden');
         adminView.classList.add('hidden');
@@ -342,6 +382,62 @@
         listEl.innerHTML = '<p class="text-red-600 text-sm">Errore nel caricamento delle comunicazioni.</p>';
       }
     }
+
+    const activityForm = document.getElementById('activity-form');
+    const activityFeedback = document.getElementById('activity-feedback');
+    const activitySave = document.getElementById('activity-save');
+    const activityKeys = ['titolo','dataInizio','dataFine','dataLabel','immagine','descrizione','pagina'];
+    function activityMessage(message) { activityFeedback.textContent=message; }
+    function resetActivity() { activityForm.reset(); document.getElementById('activity-id').value=''; document.getElementById('activity-pagina').value=''; document.getElementById('activity-form-title').textContent='Nuova attività'; }
+    document.getElementById('activity-cancel').onclick=resetActivity;
+    activityForm.addEventListener('submit',async event=>{
+      event.preventDefault(); activitySave.disabled=true; activityMessage('Salvataggio in corso…');
+      const id=document.getElementById('activity-id').value;
+      const payload=Object.fromEntries(activityKeys.map(k=>[k,document.getElementById('activity-'+k).value.trim()]));
+      payload.pubblicato=document.getElementById('activity-pubblicato').checked;
+      if (!payload.titolo || (payload.dataFine && (!payload.dataInizio || payload.dataFine < payload.dataInizio))) {activityMessage('Inserisci un titolo e date coerenti: la fine non può precedere l’inizio.');activitySave.disabled=false;return;}
+      if(!payload.dataFine) payload.dataFine=payload.dataInizio;
+      if(payload.immagine && !/^(https?:\/\/|img\/)/i.test(payload.immagine)) {activityMessage('Usa un URL https oppure un percorso che inizi con img/.');activitySave.disabled=false;return;}
+      try {
+        payload.aggiornato=serverTimestamp();
+        if(id) await updateDoc(doc(db,'attivita',id),payload); else await addDoc(collection(db,'attivita'),{...payload,creato:serverTimestamp()});
+        resetActivity(); activityMessage('Attività salvata. Il sito si aggiorna automaticamente.'); await loadActivities();
+      } catch(error) {console.error(error);activityMessage(error.code==='permission-denied' || error.code==='storage/unauthorized' ? 'Permesso negato: abilita le regole Firestore/Storage per le attività.' : 'Salvataggio non riuscito. '+error.message);}
+      finally {activitySave.disabled=false;}
+    });
+    async function loadActivities() {
+      const list=document.getElementById('activity-list'); list.textContent='Caricamento…';
+      try {
+        const snapshot=await getDocs(collection(db,'attivita')); list.replaceChildren();
+        snapshot.docs.sort((a,b)=>(b.data().dataInizio||'').localeCompare(a.data().dataInizio||'')).forEach(record=>{
+          const e=record.data(); const row=document.createElement('article'); row.className='bg-[#fffdf9] p-5 rounded-2xl border border-[#eadbc8] space-y-3';
+          const title=document.createElement('h3'); title.className='font-heading font-bold'; title.textContent=e.titolo;
+          const detail=document.createElement('p'); detail.className='text-sm'; detail.textContent=(e.dataLabel || e.dataInizio || 'Data da definire')+' · '+(e.pubblicato?'Pubblicata':'Bozza'); row.append(title,detail);
+          const actions=document.createElement('div');actions.className='flex flex-wrap gap-3';
+          function button(label,action) {const b=document.createElement('button');b.type='button';b.className='border px-3 py-1.5 rounded-lg text-sm';b.textContent=label;b.onclick=async()=>{b.disabled=true;try{await action();}catch(err){activityMessage('Operazione non riuscita: '+err.message);}finally{b.disabled=false;}};actions.append(b);}
+          button('Modifica',()=>{activityKeys.forEach(k=>document.getElementById('activity-'+k).value=e[k]||'');document.getElementById('activity-id').value=record.id;document.getElementById('activity-pubblicato').checked=!!e.pubblicato;updateImagePreview();document.getElementById('activity-form-title').textContent='Modifica attività';document.getElementById('activities-admin').scrollIntoView({behavior:'smooth'});});
+          button(e.pubblicato?'Nascondi':'Pubblica',async()=>{await updateDoc(record.ref,{pubblicato:!e.pubblicato,aggiornato:serverTimestamp()});await loadActivities();});
+          button('Elimina',async()=>{
+            const codice=prompt('Per continuare, inserisci il codice di conferma ricevuto dal Direttivo:');
+            if(codice!=='DS03') { if(codice!==null) activityMessage('Codice non corretto: l’attività non è stata eliminata.'); return; }
+            if(confirm('Confermi l’eliminazione definitiva di “'+e.titolo+'”?')) { await deleteDoc(record.ref); activityMessage('Attività eliminata.'); await loadActivities(); }
+          });
+          row.append(actions);list.append(row);
+        });
+        if(snapshot.empty)list.textContent='Nessuna attività inserita. Crea la prima scheda usando il modulo qui sopra.';
+      }catch(error){list.textContent='Impossibile leggere le attività. Verifica che le regole Firestore consentano l’accesso alla raccolta attivita.';}
+    }
+
+
+    const editorTabs = Array.from(document.querySelectorAll('.editor-tabs [role=tab]'));
+    function selectEditor(tab) {
+      editorTabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});
+    }
+    editorTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>selectEditor(tab));tab.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?editorTabs.length-1:(index+(event.key==='ArrowRight'?1:-1)+editorTabs.length)%editorTabs.length;selectEditor(editorTabs[next]);editorTabs[next].focus();});});
+    function clearPreview() {const image=document.getElementById('activity-preview');image.hidden=true;image.removeAttribute('src');}
+    function updateImagePreview() {const source=document.getElementById('activity-immagine').value.trim();const image=document.getElementById('activity-preview');if(/^(https?:\/\/|img\/)/i.test(source)){image.src=source;image.hidden=false;}else clearPreview();}
+    document.getElementById('activity-immagine').addEventListener('input',updateImagePreview);
+    activityForm.addEventListener('reset',clearPreview);
   </script>
 </body>
 </html>
