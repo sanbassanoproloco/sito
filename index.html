@@ -1495,7 +1495,7 @@
 
   <!-- ================= HEADER & NAVIGATION ================= -->
   <header class="autumn-header sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center gap-3 h-20 sm:h-24">
         
         <!-- Logo & Title -->
@@ -1518,17 +1518,18 @@
         </a>
 
         <!-- Desktop Navigation Menu -->
-        <nav class="hidden xl:flex items-center gap-1 lg:gap-1.5 header-nav ml-auto">
+        <nav class="hidden 2xl:flex items-center gap-1 lg:gap-1.5 header-nav ml-auto">
           <button onclick="navigateTo('home')" data-nav="home" class="nav-btn active">Home page</button>
           <button onclick="navigateTo('attivita')" data-nav="attivita" class="nav-btn">Le attività</button>
           <button onclick="navigateTo('comunicazioni')" data-nav="comunicazioni" class="nav-btn">Comunicazioni</button>
+          <button onclick="navigateTo('concorso-natale-2026')" data-nav="concorso-natale-2026" class="nav-btn">Concorso di Natale - 2026</button>
           <button onclick="navigateTo('direttivo')" data-nav="direttivo" class="nav-btn">Il Direttivo</button>
           <button onclick="navigateTo('contattaci')" data-nav="contattaci" class="nav-btn">Contattaci</button>
           
         </nav>
 
         <!-- Mobile Menu Toggle Button -->
-        <div class="xl:hidden flex items-center shrink-0">
+        <div class="2xl:hidden flex items-center shrink-0">
           <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl text-autumn-forest hover:bg-amber-900/10" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
             <i class="fa-solid fa-bars text-2xl"></i>
           </button>
@@ -1537,10 +1538,11 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden xl:hidden bg-[#f7efe4] border-t border-[#e5d4be] px-4 pt-3 pb-6 space-y-2 shadow-inner">
+    <div id="mobile-menu" class="hidden 2xl:hidden bg-[#f7efe4] border-t border-[#e5d4be] px-4 pt-3 pb-6 space-y-2 shadow-inner">
       <button onclick="navigateTo('home')" data-nav="home" class="nav-btn active w-full text-left px-4 py-2.5 rounded-xl font-bold text-autumn-forest hover:bg-amber-900/10">Home page</button>
       <button onclick="navigateTo('attivita')" data-nav="attivita" class="nav-btn w-full text-left px-4 py-2.5 rounded-xl font-bold text-autumn-forest hover:bg-amber-900/10">Le attività</button>
       <button onclick="navigateTo('comunicazioni')" data-nav="comunicazioni" class="nav-btn w-full text-left px-4 py-2.5 rounded-xl font-bold text-autumn-forest hover:bg-amber-900/10">Comunicazioni</button>
+      <button onclick="navigateTo('concorso-natale-2026')" data-nav="concorso-natale-2026" class="nav-btn w-full text-left px-4 py-2.5 rounded-xl font-bold text-autumn-forest hover:bg-amber-900/10">Concorso di Natale - 2026</button>
       <button onclick="navigateTo('direttivo')" data-nav="direttivo" class="nav-btn w-full text-left px-4 py-2.5 rounded-xl font-bold text-autumn-forest hover:bg-amber-900/10">Il Direttivo</button>
       <button onclick="navigateTo('contattaci')" data-nav="contattaci" class="nav-btn w-full text-left px-4 py-2.5 rounded-xl font-bold text-autumn-forest hover:bg-amber-900/10">Contattaci</button>
     </div>
@@ -2221,6 +2223,69 @@
       </div>
     </section>
 
+    <!-- ---------------- PAGE: CONCORSO DI NATALE 2026 ---------------- -->
+    <section id="page-concorso-natale-2026" class="page-section" aria-labelledby="concorso-natale-title">
+      <div class="autumn-page-banner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <span class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-amber-300 mb-2">
+            <i class="fa-solid fa-star" aria-hidden="true"></i> Natale a San Bassano
+          </span>
+          <h1 id="concorso-natale-title" class="font-serif text-4xl sm:text-5xl font-bold text-white">Concorso di Natale 2026 – Decora la tua casa!</h1>
+          <p class="text-amber-100/90 mt-4 text-lg font-semibold">II edizione</p>
+        </div>
+      </div>
+
+      <article class="py-12 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-base sm:text-lg leading-relaxed text-autumn-chestnut space-y-8">
+        <div class="space-y-4">
+          <p>La <strong>Pro Loco di San Bassano</strong> organizza anche per ques'anno il concorso dedicato alle decorazioni natalizie, invitando tutti i cittadini a rendere ancora più magico e suggestivo il nostro paese.</p>
+          <p>Il concorso si svolgerà <strong>dall'8 dicembre 2026 al 6 gennaio 2027</strong> ed è aperto a tutte le persone e famiglie residenti a San Bassano.</p>
+        </div>
+
+        <section class="autumn-card p-6 sm:p-8 rounded-3xl space-y-4" aria-labelledby="natale-categorie">
+          <h2 id="natale-categorie" class="font-serif text-2xl sm:text-3xl font-bold text-autumn-forest">Le categorie del concorso</h2>
+          <p>Saranno premiate tre categorie:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong>Miglior decorazione interna:</strong> buono commerciante.</li>
+            <li><strong>Miglior decorazione esterna:</strong> buono commerciante.</li>
+            <li><strong>Decorazione più estrosa:</strong> buono commerciante.</li>
+          </ul>
+        </section>
+
+        <section class="space-y-4" aria-labelledby="natale-partecipare">
+          <h2 id="natale-partecipare" class="font-serif text-2xl sm:text-3xl font-bold text-autumn-forest">Come partecipare</h2>
+          <p>Partecipare è semplice e gratuito!</p>
+          <p>È sufficiente inviare una fotografia della propria decorazione natalizia all'indirizzo e-mail <a href="mailto:natale@prolocosanbassano.it" class="font-bold text-autumn-rust underline underline-offset-4 hover:text-autumn-forest">natale@prolocosanbassano.it</a>, indicando:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Nome e cognome</li>
+            <li>Indirizzo di residenza</li>
+            <li>Fotografia della decorazione</li>
+          </ul>
+          <p class="autumn-surface p-5 rounded-2xl"><strong>Le fotografie dovranno essere inviate entro il 6 gennaio 2027.</strong></p>
+        </section>
+
+        <section class="space-y-4" aria-labelledby="natale-premiazione">
+          <h2 id="natale-premiazione" class="font-serif text-2xl sm:text-3xl font-bold text-autumn-forest">Valutazione e premiazione</h2>
+          <p>Le decorazioni saranno valutate da una commissione composta dai membri del Consiglio Direttivo della Pro Loco e da due rappresentanti dell'Amministrazione Comunale, che individuerà i vincitori delle tre categorie.</p>
+          <p>La premiazione si terrà presso l'<strong>Oratorio di San Bassano</strong>, in occasione dei festeggiamenti del Santo Patrono, in una delle seguenti date:</p>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Domenica 17 gennaio 2027</li>
+            <li>Domenica 24 gennaio 2027</li>
+          </ul>
+          <p>La data definitiva sarà comunicata successivamente.</p>
+        </section>
+
+        <section class="autumn-card p-6 sm:p-8 rounded-3xl space-y-4" aria-labelledby="natale-contatti">
+          <h2 id="natale-contatti" class="font-serif text-2xl sm:text-3xl font-bold text-autumn-forest">Informazioni e contatti</h2>
+          <p>Per ulteriori informazioni è possibile contattare la <strong>Pro Loco di San Bassano</strong>:</p>
+          <p><strong>Telefono:</strong> <a href="tel:+393395610282" class="text-autumn-rust underline underline-offset-4 hover:text-autumn-forest">339 5610282</a></p>
+          <p><strong>E-mail per partecipare:</strong> <a href="mailto:natale@prolocosanbassano.it" class="text-autumn-rust underline underline-offset-4 hover:text-autumn-forest">natale@prolocosanbassano.it</a></p>
+          <p><strong>Sito web:</strong> <a href="http://www.prolocosanbassano.it" class="text-autumn-rust underline underline-offset-4 hover:text-autumn-forest">www.prolocosanbassano.it</a></p>
+        </section>
+
+        <p class="font-serif text-xl sm:text-2xl text-autumn-forest">Vi aspettiamo numerosi per celebrare insieme la magia del Natale e rendere San Bassano ancora più bello e luminoso!</p>
+      </article>
+    </section>
+
     <!-- ---------------- PAGE: LA NOSTRA STORIA ---------------- -->
     <section id="page-storia" class="page-section">
       <div class="autumn-page-banner">
@@ -2868,7 +2933,7 @@
       button.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-label', 'Apri menu');
     }
-    window.matchMedia('(min-width: 1280px)').addEventListener('change', closeMobileMenu);
+    window.matchMedia('(min-width: 1536px)').addEventListener('change', closeMobileMenu);
     document.addEventListener('click', event => {
       if (!event.target.closest('header.autumn-header')) closeMobileMenu();
     });
